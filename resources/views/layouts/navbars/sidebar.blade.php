@@ -21,9 +21,15 @@
       <li class="@if ($activePage == 'users') active @endif">
               <a href="{{ route('create') }}">
                 <i class="now-ui-icons design_bullet-list-67"></i>
+                <p> {{ __("Create") }} </p>
+              </a>
+      </li>
+      <li class="@if ($activePage == 'users') active @endif">
+              <a href="{{ route('index') }}">
+                <i class="now-ui-icons design_bullet-list-67"></i>
                 <p> {{ __("Post") }} </p>
               </a>
-            </li>
+      </li>
       <li class="@if ($activePage == 'category') active @endif">
         <a href="{{ route('category.index') }}">
           <i class="now-ui-icons design_app"></i>

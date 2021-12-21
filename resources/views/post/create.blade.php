@@ -10,6 +10,12 @@
     <div class="panel-header panel-header-sm">
     </div>
     <div class="content">
+    <div class="card">
+          @if(session('success'))
+			<div class="alert alert-primary text-center text-white font-weight-bold">	
+				{{session('success')}}
+			</div>	
+		      @endif
         <div class="row">
             {{-- start col --}}
             <div class="col-md-9">
@@ -59,9 +65,9 @@
                             <div class="form-group">
                                 <label for="title">Category</label>
                                 <select name="category" class="form-control">
-                                    <option value="category">
-                                        Category
-                                    </option>
+                                    <option value="category">Category</option>
+                                    <option value="news">News</option>
+                                    <option value="sports">Sports</option>
                                 </select>
                                
                             </div>

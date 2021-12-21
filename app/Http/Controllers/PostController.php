@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\Post;
 
 
@@ -16,7 +17,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        
+        $posts = Post::orderBy('id', 'DESC')->get();
+        return view('post.index',compact('posts'));
     }
 
     /**
@@ -58,6 +60,7 @@ class PostController extends Controller
          $post->category_id=$category;
          $post->feature=$name;
          $post->save();
+         return redirect()->back()->with('success', 'Post inserted successfully!');
     }
 
     /**
@@ -79,7 +82,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $posts = Post::findorFail($id);
+        return view('post.edit', compact('posts'));
     }
 
     /**
@@ -91,7 +95,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
     }
 
     /**
