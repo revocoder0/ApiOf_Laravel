@@ -5,6 +5,8 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +26,23 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+// For Settings Route//
+Route::get('/setting', [SettingController::class, 'index'])->name('setting');
+
+
+// End for settings Route//
+
 //by Uthein and Nyi
 Route::get('/tags', [TagsController::class, 'index'])->name('tags');
 Route::post('/tags', [TagsController::class, 'store'])->name('tag_post');
 Route::get('/tag_delete/{id}', [TagsController::class, 'destroy'])->name('tag_delete');
+
+Route::get('/tags_edit/{id}', [TagsController::class, 'edit'])->name('tags_edit');
+Route::post('/tags_update/{id}', [TagsController::class, 'update'])->name('tags_update');
+
+
+// Route::post('/upload', [TagsController::class, 'update'])->name('tag_delete');
 
 
 //By Than Zaw Awo
@@ -44,9 +59,10 @@ Route::get('/delete/{id}',[PostController::class,'destroy'])->name('delete');
 
 // Category Route
 Route::resource('category', CategoryController::class);
-
+Route::delete('/selected-category',[CategoryController::class,'deleteCheckCategory'])->name('category.deleteCheckCategory');
+// End Category Route
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
+
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
@@ -58,11 +74,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'App\Http\Controllers\PageController@index']);
 });
 
-// For Settings Route//
-Route::get('editsetting', [SettingController::class, 'edit'])->name('editsetting');
-
-
-// End for settings Route//
 
 
 

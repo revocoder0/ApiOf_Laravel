@@ -2,12 +2,9 @@
 
 namespace App\Http\Requests;
 
-
-use Illuminate\Validation\Rule;
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TagsRequest extends FormRequest
+class SettingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +21,15 @@ class TagsRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(Request $request)
+    public function rules()
     {
         return [
-            'tags' => ['required', 'string', Rule::unique('tags')->ignore($request->id )],
+            'title'=>['required|min:2|max:200'],
+            'email'=>['required', 'email',Rule::unique((new User)->getTable())->ignore(auth()->id())],
+            'logo'=>['nullable', 'image'],
+            'coverphoto'=>['nullable', 'image'],
+            'description'=>['required'],
+
         ];
     }
 }

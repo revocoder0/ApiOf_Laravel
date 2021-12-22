@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderby('created_at', 'DESC')->get();
+        $categories = Category::orderby('order', 'ASC')->paginate(10);
         return view('category.index', compact('categories'));
     }
 
@@ -39,14 +39,15 @@ class CategoryController extends Controller
     {
         $name = $request->name;
         $slug = $request->slug;
-        
+        $order = $request->order;
+
 
         $category = new Category;
-        $category->name=$name;
-        $category->slug=$slug;
+        $category->name = $name;
+        $category->slug = $slug;
+        $category->order = $order;
         $category->save();
         return redirect()->back()->with('success', 'Record inserted successfully!');
-
     }
 
     /**
@@ -67,8 +68,8 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-
-    {   $category = Category::findOrFail($id);
+    {
+        $category = Category::findOrFail($id);
         return view('category.edit', compact('category'));
     }
 
@@ -81,12 +82,14 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-        $name=$request->name;
-        $slug=$request->slug;
+        $name = $request->name;
+        $slug = $request->slug;
+        $order = $request->order;
 
-        $category=Category::findOrFail($id);
+        $category = Category::findOrFail($id);
         $category->name = $name;
         $category->slug = $slug;
+        $category->order = $order;
         $category->save();
         return redirect('/category')->with('success', 'Record updated successfully!');
     }
@@ -97,10 +100,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->id;
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect('/category')->with('success', 'Record deleted successfully!');
+        return redirect()->back()->with('success', 'Record deleted successfully!');
+    }
+
+    public function deleteCheckCategory(Request $request)
+    {
+        $ids = $request->ids;
+        Category::whereIn('id',$ids)->delete();
+        return response()->json(['success'=>"Record deleted successfully!"]);
     }
 }
