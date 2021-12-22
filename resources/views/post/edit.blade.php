@@ -11,18 +11,26 @@
     </div>
     <div class="content">
     <div class="card">
+        <!-- session start -->
+        @if(session('success'))
+		<div class="alert alert-primary text-center text-white font-weight-bold">	
+			{{session('success')}}
+		</div>	
+        @endif
+        <!-- end session -->
+
+        <!-- row start -->
         <div class="row">
-            {{-- start col --}}
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="title">{{__(" Upgrade Posts")}}</h5>
                     </div>
                 <div class="card-body">
-                    <form method="post" action="#" autocomplete="off" enctype="multipart/form-data">
+                    <!-- form start -->
+                    <form method="post" action="{{ route('update', $posts->id)}}" autocomplete="off" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                   
                     @include('alerts.success')
                     <div class="row">
                         <div class="col-md-12">
@@ -44,7 +52,6 @@
                  </div>
             </div> <!-- end card -->
             </div>
-            {{-- end col --}}
             <div class="col-md-3">
                 <div class="card">
                 <div class="card-body">
@@ -60,19 +67,16 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="title">Category</label>
-                                <select name="category" value="{{ $posts->category_id }}" class="form-control">
-                                    <option value="category">
-                                        Category
-                                    </option>
+                                <select name="category" class="form-control">
+                                    <option>{{ $posts->category_id }}</option>
                                 </select>
-                               
                             </div>
                         </div>
                     </div>
                     <div class="row"> <!-- row -->
                         <div class="col-md-6">
                             <label for= "title">Feature</label>
-                            <input class="file-control" type="file" value="$posts->feature" name="feature" required autofocus>
+                            <input class="file-control" type="file" value="{{$posts->feature}}" name="feature" autofocus>
                         </div>
                     </div> <!-- end row -->
                     <div class="row mt-4"> <!-- submit and reset button -->
@@ -88,8 +92,6 @@
             </div>
         </div>
     </div>
-
-
   
 @endsection
 
