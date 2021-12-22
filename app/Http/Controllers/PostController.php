@@ -138,7 +138,7 @@ class PostController extends Controller
             $short_description = $request->short_description;
             $category = $request->category;
 
-            $post=Post::FindOrFail($id);
+            $post=Post::findorFail($id);
             if($request->hasFile('feature')){
                 $feature=$request->file('feature');
                 $path=public_path('/storage/uploads/');
@@ -168,7 +168,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post=Post::FindOrFail($id);
+        $post=Post::findorFail($id);
         $path=public_path('/storage/uploads/');
         if(isset($post->feature)){
             $oldname=$post->feature;
