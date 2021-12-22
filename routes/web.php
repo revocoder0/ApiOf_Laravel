@@ -23,7 +23,10 @@ Route::get('/', function () {
  
 
 Auth::routes();
-
+// for setting 
+Route::get('/setting',[SettingController::class,'index'])->name('setting');
+Route::post('/setting',[SettingController::class,'store'])->name('postsetting');
+Route::get('/showsetting',[SettingController::class,'show'])->name('showsetting');
 //by Uthein and Nyi
 Route::get('/tags', [TagsController::class, 'index'])->name('tags');
 Route::post('/tags', [TagsController::class, 'store'])->name('tag_post');

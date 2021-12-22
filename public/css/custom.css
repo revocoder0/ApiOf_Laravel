@@ -1,3 +1,12 @@
 .description{
     max-height: 140px !important;
 }
+.settingtext textarea{
+    border: 2px solid #E3E3E3;
+    border-radius: 10px;
+   
+}
+.settingdes:focus{
+    border-color: #fa7a50;
+    max-height: 40%;
+}
