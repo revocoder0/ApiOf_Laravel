@@ -41,12 +41,29 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
 
         if ($request->hasFile('feature')) {
             $title=$request->title;
             $description=$request->description;
+            //For Summernote photo and video
+            $dom = new \DomDocument();
+            $dom->loadHtml($description, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $imageFile = $dom->getElementsByTagName('imageFile');
+        
+            foreach($imageFile as $item => $image){
+                $data = $img->getAttribute('src');
+                list($type, $data) = explode(';', $data);
+                list(, $data)      = explode(',', $data);
+                $imgeData = base64_decode($data);
+                $image_name= "/storage/uploads/" . time().$item.'.png';
+                $path = public_path() . $image_name;
+                file_put_contents($path, $imgeData);
+                $image->removeAttribute('src');
+                $image->setAttribute('src', $image_name);
+                }
+                //end Summernote photo and video
             $short_description=$request->short_description;
             $category=$request->category; 
 
@@ -97,14 +114,31 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
             $title = $request->title;
             $description =$request->description;
+            //For summernote photo and video
+            $dom = new \DomDocument();
+            $dom->loadHtml($description, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $imageFile = $dom->getElementsByTagName('imageFile');
+        
+            foreach($imageFile as $item => $image){
+                $data = $img->getAttribute('src');
+                list($type, $data) = explode(';', $data);
+                list(, $data)      = explode(',', $data);
+                $imgeData = base64_decode($data);
+                $image_name= "/storage/uploads/" . time().$item.'.png';
+                $path = public_path() . $image_name;
+                file_put_contents($path, $imgeData);
+                $image->removeAttribute('src');
+                $image->setAttribute('src', $image_name);
+                }
+                //end summernote photo and video
             $short_description = $request->short_description;
             $category = $request->category;
 
-        $post=Post::FindOrFail($id);
+            $post=Post::FindOrFail($id);
             if($request->hasFile('feature')){
                 $feature=$request->file('feature');
                 $path=public_path('/storage/uploads/');
