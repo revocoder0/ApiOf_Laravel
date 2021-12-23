@@ -52,7 +52,7 @@
                   <tbody>
                     @foreach($tags as $key=>$tag)
                   <tr>
-                    <td>{{++$key}}</td>
+                    <td>{{$tags->firstItem() +$key}}</td>
                     <td>{{$tag->tags}}</td>
                     <td class="text-right">
 <a href="{{route('tags_edit', $tag->id)}}">
@@ -64,6 +64,11 @@
                   @endforeach
                   </tbody>
                 </table>
+                            {{-- Pagination --}}
+                            <div class="d-flex ">
+                                {!! $tags->render() !!}
+                            </div>
+                            {{-- End Pagination --}}
               </div>
             </div>
           </div>

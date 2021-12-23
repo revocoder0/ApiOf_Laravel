@@ -1,3 +1,7 @@
 .description{
     max-height: 140px !important;
 }
+
+.page-item.active .page-link{
+    background-color: #f96332;
+}
