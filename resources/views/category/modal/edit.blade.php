@@ -1,33 +1,29 @@
-@extends('layouts.app', [
-'class' => 'sidebar-mini ',
-'namePage' => 'Category',
-'activePage' => 'category',
-'activeNav' => '',
-])
-
-@section('content')
-    <div class="panel-header panel-header-sm">
-    </div>
-    <div class="content">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="title">{{ __(' Edit Category') }}</h5>
+<!-- Category Edit Modal -->
+<div class="modal fade" id="ModalEdit{{ $category->id }}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title" id="exampleModalLongTitle">Edit Category?
+                </p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            {{-- Edit Category Form --}}
-            <div class="card-body">
+            <div class="modal-body">
                 <form class="row g-3" action="{{ route('category.update', $category->id) }}" method="POST">
                     @csrf
                     @method('PATCH')
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-12 form-group">
                         <label for="Name" class="form-label">Name</label>
-                        <input type="text" name="name" class="form-control" value="{{ $category->name ?? old('name') }}"
-                            id="name" placeholder="Name...">
+                        <input type="text" name="name" class="form-control"
+                            value="{{ $category->name ?? old('name') }}" id="name" placeholder="Name...">
                         @error('name')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-12 form-group">
                         <label for="Slug" class="form-label">Slug</label>
                         <input type="text" name="slug" class="form-control" id="slug"
                             value="{{ $category->slug ?? old('slug') }}" id="name" placeholder="Slug...">
@@ -36,7 +32,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-12 form-group">
                         <label for="Order" class="form-label">Order</label>
                         <input type="text" name="order" class="form-control" id="order"
                             value="{{ $category->order ?? old('order') }}" id="order" placeholder="Order...">
@@ -50,7 +46,8 @@
                     </div>
                 </form>
             </div>
-            {{-- End Edit Category Form --}}
+
         </div>
     </div>
-@endsection
+</div>
+{{-- End Category Edit Modal --}}

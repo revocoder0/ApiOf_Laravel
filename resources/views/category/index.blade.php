@@ -87,7 +87,7 @@
                                         Order
                                     </th>
                                     <th>
-                                        Created Date
+                                        Creation Date
                                     </th>
                                     <th class="text-right">
                                         Action
@@ -120,7 +120,8 @@
                                             <td class="text-right">
 
 
-                                                <a href="{{ route('category.edit', $category->id) }}">
+                                                <a href="#" data-toggle="modal"
+                                                    data-target="#ModalEdit{{ $category->id }}">
                                                     <button type="button" class="btn btn-primary btn-sm">Edit</button>
                                                 </a>
                                                 <a class="btn btn-danger btn-sm del_btn" data-toggle="modal"
@@ -129,39 +130,9 @@
 
                                             </td>
                                         </tr>
-                                        <!-- Category Delete Modal -->
-                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <p class="modal-title" id="exampleModalLongTitle">Delete post?
-                                                        </p>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to permanently remove this category?
-                                                        <form action="{{ route('category.destroy', $category) }}"
-                                                            method="POST" id="post_form">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <input type="hidden" id="del_row" name="id">
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-sm btn-secondary"
-                                                                    data-dismiss="modal">Cancel</button>
-                                                                <button type="submit" id="del8j98okkli99"
-                                                                    class="btn btn-primary btn-sm">Confirm</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
+                                        @include('category.modal.edit')
+                                        @include('category.modal.delete')
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- End Category Delete Modal --}}
                                     @endforeach
                                 </tbody>
                             </table>
