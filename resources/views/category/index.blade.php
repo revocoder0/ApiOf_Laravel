@@ -26,7 +26,7 @@
                 <form class="row g-3" action="{{ route('category.store') }}" method="POST">
                     @csrf
                     <div class="col-md-4 form-group">
-                        <label for="Name" class="form-label">Name</label>
+                        <label for="Name" class="form-label">{{__('Name')}}</label>
                         <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}"
                             placeholder="Name...">
                         @error('name')
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="col-md-4 form-group">
-                        <label for="Slug" class="form-label">Slug</label>
+                        <label for="Slug" class="form-label">{{__('Slug')}}</label>
                         <input type="text" name="slug" class="form-control" id="slug" value="{{ old('slug') }}"
                             placeholder="Slug...">
                         @error('slug')
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="col-md-4 form-group">
-                        <label for="Order" class="form-label">Order</label>
+                        <label for="Order" class="form-label">{{__('Order')}}</label>
                         <input type="text" name="order" class="form-control" id="order" value="{{ old('order') }}"
                             placeholder="Order...">
                         @error('order')
@@ -68,7 +68,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <a href="" class="btn btn-danger btn-sm" id="deleteAllSelectedRecord">Delete Select All</a>
+                            <a href="#" class="btn btn-danger btn-sm" id="deleteAllSelectedRecord">{{__('Delete Select All')}}</a>
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th>
@@ -87,7 +87,7 @@
                                         Order
                                     </th>
                                     <th>
-                                        Created Date
+                                        Creation Date
                                     </th>
                                     <th class="text-right">
                                         Action
@@ -120,48 +120,19 @@
                                             <td class="text-right">
 
 
-                                                <a href="{{ route('category.edit', $category->id) }}">
-                                                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                                <a href="#" data-toggle="modal"
+                                                    data-target="#ModalEdit{{ $category->id }}">
+                                                    <button type="button" class="btn btn-primary btn-sm">{{__('Edit')}}</button>
                                                 </a>
                                                 <a class="btn btn-danger btn-sm del_btn" data-toggle="modal"
                                                     href="#exampleModalCenter"
-                                                    data-value="{{ $category->id }}">Delete</a>
+                                                    data-value="{{ $category->id }}">{{__('Delete')}}</a>
 
                                             </td>
                                         </tr>
-                                        <!-- Category Delete Modal -->
-                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <p class="modal-title" id="exampleModalLongTitle">Delete post?
-                                                        </p>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to permanently remove this category?
-                                                        <form action="{{ route('category.destroy', $category) }}"
-                                                            method="POST" id="post_form">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <input type="hidden" id="del_row" name="id">
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-sm btn-secondary"
-                                                                    data-dismiss="modal">Cancel</button>
-                                                                <button type="submit" id="del8j98okkli99"
-                                                                    class="btn btn-primary btn-sm">Confirm</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
+                                        @include('category.modal.edit')
+                                        @include('category.modal.delete')
 
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- End Category Delete Modal --}}
                                     @endforeach
                                 </tbody>
                             </table>
