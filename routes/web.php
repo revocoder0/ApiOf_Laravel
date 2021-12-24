@@ -48,6 +48,10 @@ Route::post('/tags_update/{id}', [TagsController::class, 'update'])->name('tags_
 //By Than Zaw Awo
 Route::get('/create',[PostController::class,'create'])->name('create');
 Route::post('/store',[PostController::class,'store'])->name('store');
+Route::get('/post',[PostController::class,'index'])->name('index');
+Route::get('/edit/{id}',[PostController::class,'edit'])->name('edit');
+Route::put('/update/{id}',[PostController::class,'update'])->name('update');
+Route::get('/delete/{id}',[PostController::class,'destroy'])->name('delete');
 
 
 
