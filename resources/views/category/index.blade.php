@@ -26,7 +26,7 @@
                 <form class="row g-3" action="{{ route('category.store') }}" method="POST">
                     @csrf
                     <div class="col-md-4 form-group">
-                        <label for="Name" class="form-label">Name</label>
+                        <label for="Name" class="form-label">{{__('Name')}}</label>
                         <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}"
                             placeholder="Name...">
                         @error('name')
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="col-md-4 form-group">
-                        <label for="Slug" class="form-label">Slug</label>
+                        <label for="Slug" class="form-label">{{__('Slug')}}</label>
                         <input type="text" name="slug" class="form-control" id="slug" value="{{ old('slug') }}"
                             placeholder="Slug...">
                         @error('slug')
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="col-md-4 form-group">
-                        <label for="Order" class="form-label">Order</label>
+                        <label for="Order" class="form-label">{{__('Order')}}</label>
                         <input type="text" name="order" class="form-control" id="order" value="{{ old('order') }}"
                             placeholder="Order...">
                         @error('order')
@@ -68,7 +68,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <a href="" class="btn btn-danger btn-sm" id="deleteAllSelectedRecord">Delete Select All</a>
+                            <a href="#" class="btn btn-danger btn-sm" id="deleteAllSelectedRecord">{{__('Delete Select All')}}</a>
                             <table class="table">
                                 <thead class=" text-primary">
                                     <th>
@@ -122,11 +122,11 @@
 
                                                 <a href="#" data-toggle="modal"
                                                     data-target="#ModalEdit{{ $category->id }}">
-                                                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                                    <button type="button" class="btn btn-primary btn-sm">{{__('Edit')}}</button>
                                                 </a>
                                                 <a class="btn btn-danger btn-sm del_btn" data-toggle="modal"
                                                     href="#exampleModalCenter"
-                                                    data-value="{{ $category->id }}">Delete</a>
+                                                    data-value="{{ $category->id }}">{{__('Delete')}}</a>
 
                                             </td>
                                         </tr>

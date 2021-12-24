@@ -17,8 +17,8 @@
                     @method('DELETE')
                     <input type="hidden" id="del_row" name="id">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" id="del8j98okkli99" class="btn btn-primary btn-sm">Confirm</button>
+                        <button type="button" class="btn btn-round btn-secondary" data-dismiss="modal">{{__('Cancel')}}</button>
+                        <button type="submit" class="btn btn-primary btn-round ">{{ __('Delete') }}</button>
                     </div>
                 </form>
             </div>
@@ -27,3 +27,49 @@
     </div>
 </div>
 {{-- End Category Delete Modal --}}
+
+{{-- Js --}}
+@push('js')
+    <script>
+        // Delete Model
+        $(document).ready(function() {
+            $(document).ready(function() {
+                $(".del_btn").click(function() {
+                    var delete_id = $(this).attr('data-value');
+                    console.log(delete_id);
+                    $('#del_row').val(delete_id);
+                });
+            });
+
+
+
+            // Check All
+            $("#checkAll").click(function(e) {
+                $('input:checkbox').not(this).prop('checked', this.checked);
+            });
+
+            // Deleted Selected All
+            $('#deleteAllSelectedRecord').click(function(e) {
+                e.preventDefault();
+                var allids = [];
+                $("input:checkbox[name=ids]:checked").each(function() {
+                    allids.push($(this).val());
+                });
+
+                $.ajax({
+                    url: "{{ route('category.deleteCheckCategory') }}",
+                    type: "DELETE",
+                    data: {
+                        _token: $("input[name =_token]").val(),
+                        ids: allids
+                    },
+                    success: function(response) {
+                        $.each(allids, function(key, val) {
+                            $('#category_id' + val).remove();
+                        });
+                    }
+                })
+            })
+        });
+    </script>
+@endpush
