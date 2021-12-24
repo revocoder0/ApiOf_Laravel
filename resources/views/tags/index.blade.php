@@ -5,6 +5,8 @@
 ])
 
 @section('content')
+
+
 <div class="panel-header panel-header-sm">
   </div>
   <!-- start content -->
@@ -23,7 +25,8 @@
               @csrf
                 <div class="col-md-12 form-group">
                   <label for="Name" class="form-label">Name</label>
-                  <input type="text" name="tags" class="form-control" value="{{old('tags')}}" placeholder="Name...">
+                  <input type="text" name="tags" id="input" class="form-control" value="{{old('tags')}}" placeholder="Name...">
+                  <span id="count" style="padding-left: 93%">0 </span><span> / 100</span>
                @include('alerts.feedback', ['field' => 'tags'])
                 </div>
                 <div class="col-md-12">
