@@ -1,3 +1,11 @@
 .description{
     max-height: 140px !important;
 }
+
+.page-item.active .page-link{
+    background-color: #f96332;
+    border-color: #f96332;
+}
+.page-link{
+    color: #f96332;
+}
