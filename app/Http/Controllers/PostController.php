@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
 use File;
+use DB;
 
 
 
@@ -61,8 +62,9 @@ class PostController extends Controller
                 $path = public_path() . $image_name;
                 file_put_contents($path, $imgeData);
                 $image->removeAttribute('src');
-                $image->setAttribute('src', $image_name);
+                $image->setAttribute('src');
                 }
+                $description = $dom->saveHTML();
                 //end Summernote photo and video
             $short_description=$request->short_description;
             $category=$request->category; 
@@ -92,7 +94,11 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        if ( $post=Post::find($id)) {
+            return view('post.detials', compact('post'));
+        }else{
+          return redirect()->back();
+        }
     }
 
     /**
@@ -134,11 +140,12 @@ class PostController extends Controller
                 $image->removeAttribute('src');
                 $image->setAttribute('src', $image_name);
                 }
+                $description = $dom->saveHTML();
                 //end summernote photo and video
             $short_description = $request->short_description;
             $category = $request->category;
 
-            $post=Post::FindOrFail($id);
+            $post=Post::findorFail($id);
             if($request->hasFile('feature')){
                 $feature=$request->file('feature');
                 $path=public_path('/storage/uploads/');
@@ -179,5 +186,11 @@ class PostController extends Controller
          }else{
               return redirect()->back();
          }
+    }
+    public function deleteCheckedPosts(Request $request)
+    {
+        $post_ids = $request->post_ids;
+        Post::whereIn('id', $post_ids)->delete();
+        return response()->json(['success'=>"Posts have been deleted!"]);
     }
 }

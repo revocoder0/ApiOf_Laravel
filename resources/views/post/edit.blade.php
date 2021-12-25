@@ -11,13 +11,7 @@
     </div>
     <div class="content">
     <div class="card">
-        <!-- session start -->
-        @if(session('success'))
-		<div class="alert alert-primary text-center text-white font-weight-bold">	
-			{{session('success')}}
-		</div>	
-        @endif
-        <!-- end session -->
+      @include('alerts.custom_success')
 
         <!-- row start -->
         <div class="row">

@@ -161,7 +161,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- End Category Delete Modal --}}
+                                        <!-- End Category Delete Modal -->
                                     @endforeach
                                 </tbody>
                             </table>
