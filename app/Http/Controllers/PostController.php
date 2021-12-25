@@ -175,7 +175,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post=Post::FindOrFail($id);
+        $post=Post::findorFail($id);
         $path=public_path('/storage/uploads/');
         if(isset($post->feature)){
             $oldname=$post->feature;

@@ -66,6 +66,7 @@
 
 
     <!--   Core JS Files   -->
+    <script src="{{ asset('assets') }}/js/all.js"></script>
     <script src="{{ asset('assets') }}/js/core/jquery.min.js"></script>
     <script src="{{ asset('assets') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('assets') }}/js/core/bootstrap.min.js"></script>
@@ -126,37 +127,7 @@
         }
         
 
-        $(document).ready(function() {
-            $(".del_btn").click(function() {
-                var delete_id = $(this).attr('data-value');
-                console.log(delete_id);
-                $('#del_row').val(delete_id);
-            });
-        });
-        $("#checkAll").click(function(e) {
-            $('input:checkbox').not(this).prop('checked', this.checked);
-        });
-        $('#deleteAllSelectedRecord').click(function(e) {
-            e.preventDefault();
-            var allids = [];
-            $("input:checkbox[name=ids]:checked").each(function() {
-                allids.push($(this).val());
-            });
-
-            $.ajax({
-                url: "{{ route('category.deleteCheckCategory') }}",
-                type: "DELETE",
-                data: {
-                    _token: $("input[name =_token]").val(),
-                    ids: allids
-                },
-                success: function(response) {
-                    $.each(allids, function(key, val) {
-                        $('#category_id' + val).remove();
-                    });
-                }
-            })
-        })
+       
     </script>
 </body>
 

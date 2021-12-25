@@ -5,6 +5,8 @@
 ])
 
 @section('content')
+
+
 <div class="panel-header panel-header-sm">
   </div>
   <!-- start content -->
@@ -23,7 +25,8 @@
               @csrf
                 <div class="col-md-12 form-group">
                   <label for="Name" class="form-label">Name</label>
-                  <input type="text" name="tags" class="form-control" value="{{old('tags')}}" placeholder="Name...">
+                  <input type="text" name="tags" id="input" class="form-control" value="{{old('tags')}}" placeholder="Name...">
+                  <span id="count" style="padding-left: 93%">0 </span><span> / 100</span>
                @include('alerts.feedback', ['field' => 'tags'])
                 </div>
                 <div class="col-md-12">
@@ -52,7 +55,7 @@
                   <tbody>
                     @foreach($tags as $key=>$tag)
                   <tr>
-                    <td>{{++$key}}</td>
+                    <td>{{$tags->firstItem() +$key}}</td>
                     <td>{{$tag->tags}}</td>
                     <td class="text-right">
 <a href="{{route('tags_edit', $tag->id)}}">
@@ -64,6 +67,11 @@
                   @endforeach
                   </tbody>
                 </table>
+                            {{-- Pagination --}}
+                            <div class="d-flex ">
+                                {!! $tags->render() !!}
+                            </div>
+                            {{-- End Pagination --}}
               </div>
             </div>
           </div>

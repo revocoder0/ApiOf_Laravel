@@ -90,7 +90,6 @@
           <p>{{ __('Typography') }}</p>
         </a>
       </li>
-    
       <li class = "@if ($activePage == 'tags') active @endif">
         <a href="{{route('tags')}}">
         <i class="now-ui-icons shopping_tag-content"></i>

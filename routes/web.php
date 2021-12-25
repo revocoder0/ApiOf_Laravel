@@ -40,7 +40,7 @@ Route::get('/tag_delete/{id}', [TagsController::class, 'destroy'])->name('tag_de
 
 Route::get('/tags_edit/{id}', [TagsController::class, 'edit'])->name('tags_edit');
 Route::post('/tags_update/{id}', [TagsController::class, 'update'])->name('tags_update');
-
+//end Uthein and nyi
 
 // Route::post('/upload', [TagsController::class, 'update'])->name('tag_delete');
 
@@ -55,7 +55,7 @@ Route::get('/delete/{id}',[PostController::class,'destroy'])->name('delete');
 Route::get('/show/{id}',[PostController::class,'show'])->name('detials');
 Route::delete('/selected-posts',[PostController::class,'deleteCheckedPosts'])->name('deleteall');
 
-//end Uthein and nyi
+
 
 
 
