@@ -9,9 +9,13 @@ input.addEventListener('keyup', function(e){
   function wordCounter(text) {
     var text = input.value;
     var wordCount = 0;
+  
     for (var i = 0; i < text.length; i++) {
       if (text[i] !== '') {
         wordCount++;
+        if (wordCount == 100) {
+            break;
+        }
       }
     }
     count.innerText = wordCount;
