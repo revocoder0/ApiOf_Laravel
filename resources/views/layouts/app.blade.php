@@ -44,7 +44,8 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('assets') }}/demo/demo.css" rel="stylesheet" />
     <!-- summer note -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.11/dist/summernote-bs4.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
 
 
@@ -80,13 +81,53 @@
     <script src="{{ asset('assets') }}/demo/demo.js"></script>
     @stack('js')
 
-    <script src="https://cdn.jsdelivr.net/npm/bs4-summernote@0.8.10/dist/summernote-bs4.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#summernote').summernote({
                 height: 450,
+                
             });
-        });      
+            //For delete all in post
+        $("#CheckAll").click(function(){
+                // $(".checkBoxClass").prop('checked', $(this).prop('checked'));
+            $('.checkBoxClass').not(this).prop('checked', this.checked);
+
+        });
+        $("#deleteAllSelectedPost").click(function(e){
+                e.preventDefault();
+                var allpostids = [];
+
+                $("input:checkbox[name=post_ids]:checked").each(function(){
+                    allpostids.push($(this).val());
+                });
+
+                $.ajax({
+                    url:"{{ route ('deleteall') }}",
+                    type:"DELETE",
+                    data:{
+                        _token:$("input[name=_token]").val(),
+                        post_ids:allpostids
+                    },
+                    success:function(responsse){
+                        $.each(allpostids, function(key, val){
+                            $("#pid" + val).remove();
+                        });
+                    }
+                });
+            });    
+        //End delete all in post
+        });
+        //For image preview
+        function previewImage(event){
+            var output = document.getElementById('output');
+            output.src = URL.createObjectURL(event.target.files[0]);
+        }
+        
+
+       
     </script>
 </body>
 

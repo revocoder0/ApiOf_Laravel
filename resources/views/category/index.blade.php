@@ -130,8 +130,10 @@
 
                                             </td>
                                         </tr>
+
                                         @include('category.modal.edit')
                                         @include('category.modal.delete')
+
 
                                     @endforeach
                                 </tbody>
