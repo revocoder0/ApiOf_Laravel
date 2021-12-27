@@ -18,14 +18,8 @@
           <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
-      <li class="@if ($activePage == 'create') active @endif">
-              <a href="{{ route('create') }}">
-                <i class="now-ui-icons design_bullet-list-67"></i>
-                <p> {{ __("Create") }} </p>
-              </a>
-      </li>
-      <li class="@if ($activePage == 'index') active @endif">
-              <a href="{{ route('index') }}">
+      <li class="@if ($activePage == 'post') active @endif">
+              <a href="{{ route('post') }}">
                 <i class="now-ui-icons design_bullet-list-67"></i>
                 <p> {{ __("Post") }} </p>
               </a>

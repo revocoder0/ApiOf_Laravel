@@ -90,7 +90,7 @@
                                         Creation Date
                                     </th>
                                     <th class="text-right">
-                                        Action
+                                        Actions
                                     </th>
                                 </thead>
                                 <tbody>

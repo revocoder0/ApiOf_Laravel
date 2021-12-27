@@ -46,13 +46,13 @@ Route::post('/tags_update/{id}', [TagsController::class, 'update'])->name('tags_
 
 
 //Posts Routes
-Route::get('/create',[PostController::class,'create'])->name('create');
-Route::post('/store',[PostController::class,'store'])->name('store');
-Route::get('/post',[PostController::class,'index'])->name('index');
-Route::get('/edit/{id}',[PostController::class,'edit'])->name('edit');
-Route::put('/update/{id}',[PostController::class,'update'])->name('update');
-Route::get('/delete/{id}',[PostController::class,'destroy'])->name('delete');
-Route::get('/show/{id}',[PostController::class,'show'])->name('detials');
+Route::get('/post/create',[PostController::class,'create'])->name('postcreate');
+Route::post('/post/create',[PostController::class,'store'])->name('poststore');
+Route::get('/post',[PostController::class,'index'])->name('post');
+Route::get('/post/edit/{id}',[PostController::class,'edit'])->name('postedit');
+Route::put('/post/update/{id}',[PostController::class,'update'])->name('postupdate');
+Route::get('/post/delete/{id}',[PostController::class,'destroy'])->name('delete_post');
+Route::get('/post/show/{id}',[PostController::class,'show'])->name('detials');
 Route::delete('/selected-posts',[PostController::class,'deleteCheckedPosts'])->name('deleteall');
 
 
