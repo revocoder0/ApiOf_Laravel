@@ -6,23 +6,18 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets') }}/img/apple-icon.png">
     <link rel="icon" type="image/png" href="{{ asset('assets') }}/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <!-- Extra details for Live View on GitHub Pages -->
-    <title>
-        Now UI Dashboard by Creative Tim
-    </title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-        name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <!-- CSS Files -->
     <link href="{{ asset('assets') }}/css/bootstrap.min.css" rel="stylesheet" />
     <link href="{{ asset('assets') }}/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="{{ asset('assets') }}/demo/demo.css" rel="stylesheet" />
-    <!-- summer note -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.11/dist/summernote-bs4.min.css" rel="stylesheet">
+    <link href="{{ asset('assets') }}/css/setting.css" rel="stylesheet" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+        name='viewport' />
     <link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
-
+    <title>
+        Now UI Dashboard by Creative Tim
+    </title>
 </head>
 
 <body class="{{ $class ?? '' }}">
@@ -34,12 +29,10 @@
             @include('layouts.page_template.guest')
         @endguest
     </div>
-
-
     @include('alerts.success')
 
-
     <!--   Core JS Files   -->
+    <script src="{{ asset('assets') }}/js/all.js"></script>
     <script src="{{ asset('assets') }}/js/core/jquery.min.js"></script>
     <script src="{{ asset('assets') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('assets') }}/js/core/bootstrap.min.js"></script>
@@ -50,23 +43,17 @@
     <script src="{{ asset('assets') }}/js/plugins/bootstrap-notify.js"></script>
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('assets') }}/js/now-ui-dashboard.min.js?v=1.3.0" type="text/javascript"></script>
-    <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-    <script src="{{ asset('assets') }}/demo/demo.js"></script>
     @stack('js')
-
-    <script src="https://cdn.jsdelivr.net/npm/bs4-summernote@0.8.10/dist/summernote-bs4.min.js"></script>
+    {{-- Summernote Editor --}}
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#summernote').summernote({
                 height: 450,
+                placeholder: 'Description...',
             });
-        });
-        $(document).ready(function() {
-            $(".del_btn").click(function() {
-                var delete_id = $(this).attr('data-value');
-                console.log(delete_id);
-                $('#del_row').val(delete_id);
-            });
+
         });
     </script>
 </body>

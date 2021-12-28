@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Requests\SettingRequest;
 use App\Models\Setting;
@@ -17,6 +17,9 @@ class SettingController extends Controller
     {   
         
       
+    {
+       
+        return view('settings.index');
     }
 
     /**
@@ -26,7 +29,7 @@ class SettingController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

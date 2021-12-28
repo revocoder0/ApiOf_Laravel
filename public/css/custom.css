@@ -1,6 +1,7 @@
 .description{
     max-height: 140px !important;
 }
+
 .settingtext textarea{
     border: 2px solid #E3E3E3;
     border-radius: 10px;
@@ -9,4 +10,23 @@
 .settingdes:focus{
     border-color: #fa7a50;
     max-height: 40%;
+}
+
+.page-item.active .page-link{
+    background-color: #f96332;
+    border-color: #f96332;
+}
+.page-link{
+    color: #f96332;
+}
+
+.inputfile {
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+    color: white;
+    display: inline-block;
 }
