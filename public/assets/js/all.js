@@ -13,7 +13,7 @@ input.addEventListener('keyup', function(e){
     for (var i = 0; i < text.length; i++) {
       if (text[i] !== '') {
         wordCount++;
-        if (wordCount == 100) {
+        if (wordCount == 40) {
             break;
         }
       }
