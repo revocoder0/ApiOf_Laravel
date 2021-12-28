@@ -19,7 +19,7 @@ class TagsController extends Controller
     public function index()
     {
         
-        $tags = Tags::orderby('id','DESC')->get();
+        $tags = Tags::orderby('id','DESC')->paginate(5);
         return view('tags.index', compact('tags'));
     }
 
@@ -89,7 +89,7 @@ class TagsController extends Controller
         $tag = Tags::findOrFail($id);
         $tag->tags = $tags;
         $tag->save();
-        return redirect('tags')->with('success', 'Updated successfully!');
+        return redirect('tags')->with('success', 'Record Updated successfully!');
 
     }
 
@@ -102,7 +102,7 @@ class TagsController extends Controller
     public function destroy($id)
     {
         if (Tags::findOrFail($id)->delete()) {
-            return redirect()->back()->with('success', 'Delete successfully!');
+            return redirect()->back()->with('success', 'Record Deleted successfully!');
         }
     }
 }

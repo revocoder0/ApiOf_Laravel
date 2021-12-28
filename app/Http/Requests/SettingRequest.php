@@ -4,8 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-
-class PostRequest extends FormRequest
+class SettingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +23,13 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
-        $feature = request()->isMethod('put') ? 'nullable|mimes:jpeg,jpg,png,gif,svg|max:8000' : 'required|mimes:jpeg,jpg,png,gif,svg|max:8000';
         return [
-            'title' => 'required',
-            'description' => 'required',
-            'short_description' => 'required',
-            'category' => 'required',
-            'feature' => $feature,
+            'title'=>['required|min:2|max:200'],
+            'email'=>['required', 'email',Rule::unique((new User)->getTable())->ignore(auth()->id())],
+            'logo'=>['nullable', 'image'],
+            'coverphoto'=>['nullable', 'image'],
+            'description'=>['required'],
+
         ];
     }
 }

@@ -18,12 +18,12 @@
           <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
-      <li class="@if ($activePage == 'users') active @endif">
-              <a href="{{ route('create') }}">
+      <li class="@if ($activePage == 'post') active @endif">
+              <a href="{{ route('post') }}">
                 <i class="now-ui-icons design_bullet-list-67"></i>
                 <p> {{ __("Post") }} </p>
               </a>
-            </li>
+      </li>
       <li class="@if ($activePage == 'category') active @endif">
         <a href="{{ route('category.index') }}">
           <i class="now-ui-icons design_bullet-list-67"></i>
@@ -84,7 +84,6 @@
           <p>{{ __('Typography') }}</p>
         </a>
       </li>
-    
       <li class = "@if ($activePage == 'tags') active @endif">
         <a href="{{route('tags')}}">
         <i class="now-ui-icons shopping_tag-content"></i>

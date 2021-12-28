@@ -1,37 +1,35 @@
-@extends('layouts.app', [
-  'namePage' => 'Tags',
-  'class' => 'sidebar-mini',
-  'activePage' => 'Tags',
-])
 
-@section('content')
-<div class="panel-header panel-header-sm">
-  </div>
-  <!-- start content -->
-  <div class="content">
-    <!-- start card -->
-        <div class="card">
-        
-          <div class="card-header">
-            <h5 class="title">{{__(" Edit Tags")}}</h5>
-          </div>
-          <div class="card-body">
-          
-            <form action="{{route('tags_update', $tags->id)}}" method="POST" class="row g-3">
-              @csrf
-              @include('alerts.success')
-                <div class="col-md-12 form-group">
-                  <label for="Name" class="form-label">Name</label>
-                  <input type="text" name="tags" class="form-control" value="{{$tags->tags}}"placeholder="Name...">
-                  @include('alerts.feedback', ['field' => 'tags'])
-                </div>
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary btn-round ">{{__('Upload')}}</button>
-                </div>
-              </form>
-          </div>
-      </div>
-<!-- end card -->
+<!-- start edit -->
+<div class="modal fade" id="Edit{{$tag->id}}" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title" id="exampleModalLongTitle">Edit Tags?
+                </p>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" action="{{ route('tags_update', $tag->id) }}" method="POST">
+                    @csrf
+                  
+                    <div class="col-md-12 form-group">
+                        <label for="Name" class="form-label">{{__('Name')}}</label>
+                        <input type="text" name="tags"  id="input" class="form-control"
+                            value="{{ $tag->tags ?? old('tags') }}" id="name" placeholder="Name...">
+                            <span id="count" style="padding-left: 87%">0 </span><span> / 40</span>
+                        @error('tags')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-round btn-secondary" data-dismiss="modal">{{__('Cancel')}}</button>
+                        <button type="submit" class="btn btn-primary btn-round ">{{ __('Update') }}</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
 </div>
-<!-- end content -->
-@endsection
+
+<!-- end tags edit -->

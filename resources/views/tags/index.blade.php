@@ -1,10 +1,12 @@
 @extends('layouts.app', [
   'namePage' => 'Tags',
   'class' => 'sidebar-mini',
-  'activePage' => 'Tags',
+  'activePage' => 'tags',
 ])
 
 @section('content')
+
+
 <div class="panel-header panel-header-sm">
   </div>
   <!-- start content -->
@@ -12,14 +14,7 @@
     <!-- start card -->
         <div class="card">
         <!-- start section -->
-        @if(session('success'))
-			      <div class="alert alert-success text-center text-white font-weight-bold alert-dismissible fade show" role="alert">	
-					    {{session('success')}} 
-            <button type="button" data-dismiss="alert" aria-label="Close" class="close btn-close">
-                        <i class="now-ui-icons btn-close ui-1_simple-remove"></i>
-           </button>
-			      </div>	
-		      @endif
+       @include("alerts.custom_success")
           <!-- end section -->
           <div class="card-header">
             <h5 class="title">{{__(" Tags")}}</h5>
@@ -28,13 +23,12 @@
           <div class="card-body">
             <form action="{{route('tag_post')}}" method="POST" class="row g-3">
               @csrf
-              @include('alerts.success')
                 <div class="col-md-12 form-group">
                   <label for="Name" class="form-label">Name</label>
-                  <input type="text" name="tags" class="form-control" value="{{old('tags')}}" placeholder="Name...">
-                  @include('alerts.feedback', ['field' => 'tags'])
+                  <input type="text" name="tags" id="input" class="form-control" value="{{old('tags')}}" placeholder="Name...">
+                  <span id="count" style="padding-left: 93%">0 </span><span> / 40</span>
+               @include('alerts.feedback', ['field' => 'tags'])
                 </div>
-                
                 <div class="col-md-12">
                     <button type="submit" class="btn btn-primary btn-round ">{{__('Save')}}</button>
                 </div>
@@ -55,19 +49,30 @@
                   <thead class=" text-primary">
 
                   <tr class="text-red font-weight-bold">
-								<th>No.</th><th>Name<th class="text-center">Action</th>
+								<th>No.</th><th>Name<th class="text-right">Action</th>
 							</tr>
                   </thead>
                   <tbody>
                     @foreach($tags as $key=>$tag)
                   <tr>
-                    <td>{{++$key}}</td>
+                    <td>{{$tags->firstItem() +$key}}</td>
                     <td>{{$tag->tags}}</td>
-                    <td class="text-center"><a href="{{route('tag_delete', $tag->id)}}" class="px-3 btn-sm" title="Delete" onclick="return confirm('Are you sure')"><i class="now-ui-icons ui-1_simple-remove"></i> <a href="{{route('tags_edit', $tag->id)}}" class="px-3 ml-3 btn-sm"><i class="now-ui-icons ui-2_settings-90"></i></a></td>
+                    <td class="text-right">
+<a href="#" data-toggle="modal" data-target="#Edit{{$tag->id}}">
+    <button type="button" class="btn btn-primary btn-sm">Edit</button>
+</a>
+<a class="btn btn-danger btn-sm" href="#">Delete</a>
+</td>
                   </tr>
+                  @include('tags.edit')
                   @endforeach
                   </tbody>
                 </table>
+                            {{-- Pagination --}}
+                            <div class="d-flex ">
+                                {!! $tags->render() !!}
+                            </div>
+                            {{-- End Pagination --}}
               </div>
             </div>
           </div>
