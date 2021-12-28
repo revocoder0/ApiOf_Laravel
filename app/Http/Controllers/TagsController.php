@@ -89,7 +89,7 @@ class TagsController extends Controller
         $tag = Tags::findOrFail($id);
         $tag->tags = $tags;
         $tag->save();
-        return redirect('tags')->with('success', 'Record Updated successfully!');
+        return redirect('tags.edit')->with('success', 'Record Updated successfully!');
 
     }
 
@@ -105,6 +105,11 @@ class TagsController extends Controller
             return redirect()->back()->with('success', 'Record Deleted successfully!');
         }
     }
+
+    
 }
+
+
+
 
    //

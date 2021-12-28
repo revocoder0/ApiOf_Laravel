@@ -5,13 +5,12 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="modal-title" id="exampleModalLongTitle">Edit Tags?
+                <p class="modal-title" id="exampleModalLongTitle">{{_('Edit Tags?')}}
                 </p>
             </div>
             <div class="modal-body">
                 <form class="row g-3" action="{{ route('tags_update', $tag->id) }}" method="POST">
                     @csrf
-                  
                     <div class="col-md-12 form-group">
                         <label for="Name" class="form-label">{{__('Name')}}</label>
                         <input type="text" name="tags"  id="input" class="form-control"
@@ -27,9 +26,7 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>
-
 <!-- end tags edit -->
