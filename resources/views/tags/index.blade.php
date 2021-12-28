@@ -26,7 +26,7 @@
                 <div class="col-md-12 form-group">
                   <label for="Name" class="form-label">Name</label>
                   <input type="text" name="tags" id="input" class="form-control" value="{{old('tags')}}" placeholder="Name...">
-                  <span id="count" style="padding-left: 93%">0 </span><span> / 100</span>
+                  <span id="count" style="padding-left: 93%">0 </span><span> / 40</span>
                @include('alerts.feedback', ['field' => 'tags'])
                 </div>
                 <div class="col-md-12">
@@ -58,12 +58,13 @@
                     <td>{{$tags->firstItem() +$key}}</td>
                     <td>{{$tag->tags}}</td>
                     <td class="text-right">
-<a href="{{route('tags_edit', $tag->id)}}">
+<a href="#" data-toggle="modal" data-target="#Edit{{$tag->id}}">
     <button type="button" class="btn btn-primary btn-sm">Edit</button>
 </a>
-<a class="btn btn-danger btn-sm" href="{{route('tag_delete', $tag->id)}}">Delete</a>
+<a class="btn btn-danger btn-sm" href="#">Delete</a>
 </td>
                   </tr>
+                  @include('tags.edit')
                   @endforeach
                   </tbody>
                 </table>
