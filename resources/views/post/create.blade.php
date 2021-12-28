@@ -108,6 +108,12 @@
                                     <div class="text-danger m-3">{{ $message }}</div>
                                 @enderror
                             </div> <!-- end row -->
+
+                            <div class="row">
+                                <input type="checkbox" name="status" id="showFeature" class="m-3" value="1">
+                                <label class="m-3">Show Feature</label>
+                            </div> <!-- end row -->
+                            
                             <div class="row mt-4">
                                 <!-- submit and reset button -->
                                 <div class="col-md-6">
@@ -133,5 +139,7 @@
                 var output = document.getElementById('output');
                 output.src = URL.createObjectURL(event.target.files[0]);
             }
+            //Show Feature 
+            
         </script>
     @endpush

@@ -25,11 +25,13 @@ class PostRequest extends FormRequest
     public function rules()
     {
         $feature = request()->isMethod('put') ? 'nullable|mimes:jpeg,jpg,png,gif,svg|max:8000' : 'required|mimes:jpeg,jpg,png,gif,svg|max:8000';
+        
         return [
             'title' => 'required',
             'description' => 'required',
             'short_description' => 'required',
             'category' => 'required',
+            'status' => 'boolean',
             'feature' => $feature,
         ];
     }
