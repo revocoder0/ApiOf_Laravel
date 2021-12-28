@@ -25,6 +25,9 @@ Route::get('/', function () {
  
 
 Auth::routes();
+// for setting Route
+Route::get('/setting', [SettingController::class,'edit'])->name('editsetting');
+Route::post('/storesetting', [SettingController::class, 'update'])->name('storesetting');
 
 
 // For Settings Route//
@@ -75,6 +78,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'App\Http\Controllers\PageController@index']);
 });
+
+
 
 
 
