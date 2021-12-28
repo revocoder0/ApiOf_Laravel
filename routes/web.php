@@ -23,10 +23,10 @@ Route::get('/', function () {
  
 
 Auth::routes();
-// for setting 
-Route::get('/setting',[SettingController::class,'index'])->name('setting');
-Route::post('/setting',[SettingController::class,'store'])->name('postsetting');
-Route::get('/showsetting',[SettingController::class,'show'])->name('showsetting');
+// for setting Route
+Route::get('/setting', [SettingController::class,'edit'])->name('editsetting');
+Route::post('/storesetting', [SettingController::class, 'update'])->name('storesetting');
+
 //by Uthein and Nyi
 Route::get('/tags', [TagsController::class, 'index'])->name('tags');
 Route::post('/tags', [TagsController::class, 'store'])->name('tag_post');
@@ -58,11 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'App\Http\Controllers\PageController@index']);
 });
 
-// For Settings Route//
-Route::get('editsetting', [SettingController::class, 'edit'])->name('editsetting');
 
-
-// End for settings Route//
 
 
 
