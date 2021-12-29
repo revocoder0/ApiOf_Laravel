@@ -101,6 +101,12 @@
                     <p>{{ __('Tags') }}</p>
                 </a>
             </li>
+            <li class="@if ($activePage == 'social') active @endif">
+                <a href="{{ route('social.index') }}">
+                    <i class="now-ui-icons objects_globe"></i>
+                    <p>{{ __('Social') }}</p>
+                </a>
+            </li>
             <li class="">
                 <a href="{{ route('page.index', 'upgrade') }}" class="bg-info">
                     <i class="now-ui-icons arrows-1_cloud-download-93"></i>
