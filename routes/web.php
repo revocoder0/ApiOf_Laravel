@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
@@ -36,14 +37,18 @@ Route::get('/setting', [SettingController::class, 'index'])->name('setting');
 
 // End for settings Route//
 
-//by Uthein and Nyi
+//Tags
 Route::get('/tags', [TagsController::class, 'index'])->name('tags');
 Route::post('/tags', [TagsController::class, 'store'])->name('tag_post');
 Route::get('/tag_delete/{id}', [TagsController::class, 'destroy'])->name('tag_delete');
 Route::get('/tags_edit/{id}', [TagsController::class, 'edit'])->name('tags_edit');
 Route::post('/tags_update/{id}', [TagsController::class, 'update'])->name('tags_update');
+//end Tags
+//Social
+Route::resource('social', SocialController::class);
+Route::get('/social_delete/{id}', [SocialController::class, 'destroy'])->name('social_delete');
 
-//end Uthein and nyi
+//End Social
 
 // Route::post('/upload', [TagsController::class, 'update'])->name('tag_delete');
 

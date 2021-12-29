@@ -26,7 +26,7 @@
 
             </li>
             <li class="@if ($activePage == 'setting') active @endif">
-              <a href="{{ route('editsetting') }}">
+              <a href="#">
                 <i class="now-ui-icons design_bullet-list-67"></i>
                 <p> {{ __("Setting") }} </p>
               </a>
@@ -98,6 +98,12 @@
         <a href="{{route('tags')}}">
         <i class="now-ui-icons shopping_tag-content"></i>
          <p>{{ __('Tags') }}</p>
+        </a>
+      </li>
+      <li class = "@if ($activePage == 'social') active @endif">
+        <a href="{{route('social.index')}}">
+        <i class="now-ui-icons objects_globe"></i>
+         <p>{{ __('Social') }}</p>
         </a>
       </li>
       <li class = "">

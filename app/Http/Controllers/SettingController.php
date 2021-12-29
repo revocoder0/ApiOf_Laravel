@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Requests\SettingRequest;
-use App\Models\Setting;
 use Illuminate\Support\Facades\File;
 class SettingController extends Controller
 {
@@ -14,9 +13,6 @@ class SettingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        
-      
     {
        
         return view('settings.index');
