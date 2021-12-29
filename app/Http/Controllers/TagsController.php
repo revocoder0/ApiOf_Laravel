@@ -85,12 +85,11 @@ class TagsController extends Controller
     public function update(TagsRequest $request, $id)
     {
         $tags =  $request->tags;
-        
+         
         $tag = Tags::findOrFail($id);
         $tag->tags = $tags;
         $tag->save();
-        return redirect('tags.edit')->with('success', 'Record Updated successfully!');
-
+     return redirect()->back()->with('success', 'Record Updated successfully!');
     }
 
     /**
@@ -109,7 +108,3 @@ class TagsController extends Controller
     
 }
 
-
-
-
-   //
