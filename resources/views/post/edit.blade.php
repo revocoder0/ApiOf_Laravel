@@ -103,6 +103,10 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="row">
+                                <input name="status" type="checkbox" @if( old('status', $posts->status ?? false) ) checked='checked' @endif>
+                                <label class="m-3">Show Feature</label>
+                            </div> <!-- end row -->
                             <div class="row mt-4">
                                 <div class="col-md-6">
                                     <button type="reset" class="btn btn-danger" style="width:100%">Reset</button>

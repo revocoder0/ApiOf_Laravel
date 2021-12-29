@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Setting;
-use Illuminate\Http\Request;
 use App\Http\Requests\SettingRequest;
 use Illuminate\Support\Facades\File;
+use Illuminate\Http\Request;
+
 class SettingController extends Controller
 {
     /**
@@ -14,7 +16,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-       
+
         return view('settings.index');
     }
 
@@ -25,7 +27,6 @@ class SettingController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -35,7 +36,7 @@ class SettingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(SettingRequest $request)
-    {     
+    {
     }
 
     /**
@@ -46,7 +47,6 @@ class SettingController extends Controller
      */
     public function show()
     {
-        
     }
 
     /**
@@ -55,11 +55,17 @@ class SettingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(Request $request)
     {
+
         $settings = Setting::get();
-        $setting = $settings[0];
-        return view('settings.edit', compact('setting'));
+        if ($settings->count() == 0) {
+            return view('settings.index');
+        } else {
+
+            $setting = $settings[0];
+            return view('settings.edit', compact('setting'));
+        }
     }
 
     /**
@@ -70,68 +76,65 @@ class SettingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(SettingRequest $request)
-    {  
-        $setting=Setting::get();
-        if($setting->isEmpty()){
-            $title=$request->title;
-            $email=$request->email;
-            $description=$request->description;
-            if($request->hasFile('logo')){
-                $logo=$request->file('logo');
-                $path=public_path('/storage/upload');
-                $logoname=time().".".$logo->getClientOriginalExtension();
-                $logo->move($path,$logoname);
+    {
+        $setting = Setting::get();
+        if ($setting->isEmpty()) {
+            $title = $request->title;
+            $email = $request->email;
+            $description = $request->description;
+            if ($request->hasFile('logo')) {
+                $logo = $request->file('logo');
+                $path = public_path('/storage/upload');
+                $logoname = time() . "." . $logo->getClientOriginalExtension();
+                $logo->move($path, $logoname);
             }
-            if($request->hasFile('coverphoto')){
-                $coverphoto=$request->file('coverphoto');
-                $path=public_path('/storage/upload');
-                $covername=time().".".$coverphoto->getClientOriginalExtension();
-                $coverphoto->move($path,$covername);
+            if ($request->hasFile('coverphoto')) {
+                $coverphoto = $request->file('coverphoto');
+                $path = public_path('/storage/upload');
+                $covername = time() . "." . $coverphoto->getClientOriginalExtension();
+                $coverphoto->move($path, $covername);
             }
-            $sobj=new Setting;
-            $sobj->title=$title;
-            $sobj->email=$email;
-            $sobj->description=$description;
-            $sobj->logo=$logoname;
-            $sobj->cover_photo=$covername;
+            $sobj = new Setting;
+            $sobj->title = $title;
+            $sobj->email = $email;
+            $sobj->description = $description;
+            $sobj->logo = $logoname;
+            $sobj->cover_photo = $covername;
             $sobj->save();
-            return back()->with('success','Record create successfully!');  
-        }else{
+            return back()->with('success', 'Setting create successfully!');
+        } else {
             $sobj = $setting[0];
-            $title=$request->title;
-            $email=$request->email;
-            $description=$request->description;
-            if($request->hasFile('logo')){
-                $logo=$request->file('logo');
-                $path=public_path('/storage/upload');
-                $logoname=time().".".$logo->getClientOriginalExtension();
-                $logo->move($path,$logoname);
+            $title = $request->title;
+            $email = $request->email;
+            $description = $request->description;
+            if ($request->hasFile('logo')) {
+                $logo = $request->file('logo');
+                $path = public_path('/storage/upload');
+                $logoname = time() . "." . $logo->getClientOriginalExtension();
+                $logo->move($path, $logoname);
                 if (isset($sobj->logo)) {
                     $oldlogo = $sobj->logo;
                     File::delete($path . '' . $oldlogo);
                 }
-                $sobj->logo=$logoname;
+                $sobj->logo = $logoname;
             }
-            if($request->hasFile('coverphoto')){
-                $coverphoto=$request->file('coverphoto');
-                $path=public_path('/storage/upload');
-                $covername=time().".".$coverphoto->getClientOriginalExtension();
-                $coverphoto->move($path,$covername);
+            if ($request->hasFile('coverphoto')) {
+                $coverphoto = $request->file('coverphoto');
+                $path = public_path('/storage/upload');
+                $covername = time() . "." . $coverphoto->getClientOriginalExtension();
+                $coverphoto->move($path, $covername);
                 if (isset($sobj->cover_photo)) {
                     $oldcover = $sobj->cover_photo;
                     File::delete($path . '' . $oldcover);
                 }
-                $sobj->cover_photo=$covername;
+                $sobj->cover_photo = $covername;
             }
-            $sobj->title=$title;
-            $sobj->email=$email;
-            $sobj->description=$description;
+            $sobj->title = $title;
+            $sobj->email = $email;
+            $sobj->description = $description;
             $sobj->save();
-            return back()->with('success','Record updated successfully!');  
-            
+            return back()->with('success', 'Setting updated successfully!');
         }
-            
-        
     }
 
     /**

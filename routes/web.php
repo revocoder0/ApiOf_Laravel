@@ -26,13 +26,11 @@ Route::get('/', function () {
  
 
 Auth::routes();
-// for setting Route
-Route::get('/setting', [SettingController::class,'edit'])->name('editsetting');
-Route::post('/storesetting', [SettingController::class, 'update'])->name('storesetting');
+// Setting Route
+Route::get('/setting', [SettingController::class,'edit'])->name('setting');
+Route::post('/setting', [SettingController::class, 'update'])->name('storesetting');
 
 
-// For Settings Route//
-Route::get('/setting', [SettingController::class, 'index'])->name('setting');
 
 
 // End for settings Route//
