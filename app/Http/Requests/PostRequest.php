@@ -31,7 +31,7 @@ class PostRequest extends FormRequest
             'description' => 'required',
             'short_description' => 'required',
             'category' => 'required',
-            'status' => 'boolean',
+            'status' => 'boolean|nullable',
             'feature' => $feature,
         ];
     }

@@ -67,7 +67,11 @@ class PostController extends Controller
             $description = $dom->saveHTML();
             //end Summernote photo and video
             $short_description = $request->short_description;
-            $status = $request->status;
+            if($request->get('status') == null){
+                $status = 0;
+              } else {
+                $status = request('status');
+              }
             $category = $request->category;
 
             $feature = $request->file('feature');
@@ -147,7 +151,11 @@ class PostController extends Controller
         $description = $dom->saveHTML();
         //end summernote photo and video
         $short_description = $request->short_description;
-        $status = $request->status;
+        if($request->get('status') == null){
+            $status = 0;
+          } else {
+            $status = request('status');
+          }
         $category = $request->category;
 
         $post = Post::findorFail($id);

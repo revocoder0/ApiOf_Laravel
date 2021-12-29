@@ -22,7 +22,10 @@
                         <li class="list-inline-item ml-5"><i class="now-ui-icons users_single-02"></i></li>
                         {{ $post->user->name }}
                     </ul>
-                    <img src="{{ asset('/storage/uploads/' . $post->feature) }}" class="img-thumbnial" style="width: 50%;">
+                    @if ($post->status===1)
+                        <img src="{{ asset('/storage/uploads/' . $post->feature) }}" class="img-thumbnial" style="width: 50%;">
+                    @endif
+                    
                     <ul class="list-inline">
                         <li class="list-inline-item">Arakan Reader, </li>
                         <li class="list-inline-item">{{ Carbon\Carbon::parse($post->created_at)->format('y-M-d') }}</i></li>

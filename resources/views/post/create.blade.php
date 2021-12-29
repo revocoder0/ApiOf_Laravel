@@ -110,7 +110,7 @@
                             </div> <!-- end row -->
 
                             <div class="row">
-                                <input type="checkbox" name="status" id="showFeature" class="m-3" value="1">
+                                <input class="m-3" name="status" type="checkbox" value="1">
                                 <label class="m-3">Show Feature</label>
                             </div> <!-- end row -->
                             
@@ -120,7 +120,7 @@
                                     <button class="btn btn-danger" type="reset" style="width:100%">Reset</button>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="submit" class="btn btn-primary" style="width:100%" value="Publish">
+                                    <input type="submit" name="public" class="btn btn-primary" style="width:100%" value="Publish">
                                 </div>
                             </div>
                         </div>
@@ -140,6 +140,7 @@
                 output.src = URL.createObjectURL(event.target.files[0]);
             }
             //Show Feature 
-            
+            let btnShow = document.querySelector('public');
+
         </script>
     @endpush

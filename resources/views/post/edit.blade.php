@@ -104,7 +104,7 @@
                                 @enderror
                             </div>
                             <div class="row">
-                                <input type="checkbox" name="status" id="showFeature" class="m-3" value="1">
+                                <input name="status" type="checkbox" @if( old('status', $posts->status ?? false) ) checked='checked' @endif>
                                 <label class="m-3">Show Feature</label>
                             </div> <!-- end row -->
                             <div class="row mt-4">
