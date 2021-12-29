@@ -8,7 +8,6 @@ use App\Models\Category;
 use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
-use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -68,6 +67,11 @@ class PostController extends Controller
             $description = $dom->saveHTML();
             //end Summernote photo and video
             $short_description = $request->short_description;
+            if($request->get('status') == null){
+                $status = 0;
+              } else {
+                $status = request('status');
+              }
             $category = $request->category;
 
             $feature = $request->file('feature');
@@ -81,6 +85,7 @@ class PostController extends Controller
         $post->title = $title;
         $post->description = $description;
         $post->short_description = $short_description;
+        $post->status = $status;
         $post->category_id = $category;
         $post->feature = $name;
         $post->user_id = Auth::user()->id;
@@ -146,6 +151,11 @@ class PostController extends Controller
         $description = $dom->saveHTML();
         //end summernote photo and video
         $short_description = $request->short_description;
+        if($request->get('status') == null){
+            $status = 0;
+          } else {
+            $status = request('status');
+          }
         $category = $request->category;
 
         $post = Post::findorFail($id);
@@ -165,6 +175,7 @@ class PostController extends Controller
         $post->title = $title;
         $post->description = $description;
         $post->short_description = $short_description;
+        $post->status = $status;
         $post->category_id = $category;
         $post->save();
         return redirect()->back()->with('success', 'Post Update successfully!');

@@ -23,7 +23,7 @@
                     class="btn btn-primary btn-sm text-white pull-right" href="{{ route('postcreate') }}">Add Post</a>
                 <div class="table-responsive">
                     <table class="table">
-                        <thead class="text-primary">
+                        <thead class="text-primary text-center">
                             <th><input type="checkbox" class="selectAll" id="CheckAll"></th>
                             <th>No</th>
                             <th>Feature</th>
@@ -31,13 +31,14 @@
                             <th>Short Description</th>
                             <th>Category</th>
                             <th>User</th>
+                            <th>Status</th>
                             <th>Creation date</th>
-                            <th class="text-right">Actions</th>
+                            <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($posts as $key => $post)
-                                <tr id="pid{{ $post->id }}">
+                                <tr id="pid{{ $post->id }}" class="text-center">
                                     <td>
                                         <input type="checkbox" name="post_ids" class="checkBoxClass"
                                             value="{{ $post->id }}">
@@ -55,6 +56,7 @@
                                     <td> {{ Str::limit($post->short_description, 20) }}</td>
                                     <td>{{ $post->category->name }}</td>
                                     <td>{{ $post->user->name }}</td>
+                                    <td>{{ $post->status }}</td>
                                     <td>{{ Carbon\Carbon::parse($post->created_at)->format('y-M-d') }}</td>
                                     <td class="text-right">
                                         <a href="{{ route('detials', $post->id) }}"><button
