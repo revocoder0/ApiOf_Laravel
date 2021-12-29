@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TagsRequest;
+use App\Http\Requests\SocialRequest;
 use Illuminate\Http\Request;
-use App\Models\Tags;
+use App\Models\Social;
 
-class TagsController extends Controller
+class SocialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,8 @@ class TagsController extends Controller
      */
     public function index()
     {
-        
-        $tags = Tags::orderby('id','DESC')->paginate(5);
-        return view('tags.index', compact('tags'));
+        $socials = Social::orderby('id', 'DESC')->paginate(5);
+       return view('social.index', compact('socials'));
     }
 
     /**
@@ -36,16 +35,17 @@ class TagsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TagsRequest $request)
+    public function store(SocialRequest $request)
     {
-        $tag =  $request->tags;
-
-        $tags = new Tags;
-        $tags->tags = $tag;
-        $tags->save();
+        $icon = $request->icon;
+        $name = $request->name;
+        $link = $request->link;
+        $social = new Social;
+        $social->icon = $icon;
+        $social->name = $name;
+        $social->link = $link;
+        $social->save();
         return redirect()->back()->with('success', 'Record inserted successfully!');
-
-
     }
 
     /**
@@ -56,7 +56,7 @@ class TagsController extends Controller
      */
     public function show($id)
     {
-        //dewdwdw
+        //
     }
 
     /**
@@ -67,9 +67,7 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        $tags = Tags::findOrFail($id);
-        return view('tags.edit', compact('tags'));
-        
+       
     }
 
     /**
@@ -79,14 +77,17 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TagsRequest $request, $id)
+    public function update(SocialRequest $request, $id)
     {
-        $tags =  $request->tags;
-         
-        $tag = Tags::findOrFail($id);
-        $tag->tags = $tags;
-        $tag->save();
-     return redirect()->back()->with('success', 'Record Updated successfully!');
+        $name = $request->name;
+        $icon = $request->icon;
+        $link = $request->link;
+        $social = Social::findOrFail($id);
+        $social->name = $name;
+        $social->icon = $icon;
+        $social->link = $link;
+        $social->save();
+        return redirect()->back()->with('success', 'Record updated successfully!');
     }
 
     /**
@@ -97,11 +98,8 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        if (Tags::findOrFail($id)->delete()) {
+        if (Social::findOrFail($id)->delete()) {
             return redirect()->back()->with('success', 'Record Deleted successfully!');
         }
     }
-
-    
 }
-

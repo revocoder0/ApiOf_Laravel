@@ -6,7 +6,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TagsRequest extends FormRequest
+class SocialRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,9 @@ class TagsRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'tags' => ['required', 'string', 'min:2', 'max:40', Rule::unique('tags')->ignore($request->id )],
+            'icon' => ['required', 'max:100', Rule::unique('socials')->ignore($this->social )],
+            'name' => ['required', 'max:100', Rule::unique('socials')->ignore($this->social )],
+            'link' => ['required', 'max:200', Rule::unique('socials')->ignore($this->social )],
         ];
     }
 }

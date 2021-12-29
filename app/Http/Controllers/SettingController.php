@@ -15,7 +15,6 @@ class SettingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-
     {
 
         return view('settings.index');

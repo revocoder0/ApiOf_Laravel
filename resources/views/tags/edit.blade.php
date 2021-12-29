@@ -13,9 +13,8 @@
                     @csrf
                     <div class="col-md-12 form-group">
                         <label for="Name" class="form-label">{{__('Name')}}</label>
-                        <input type="text" name="tags"  id="input" class="form-control"
-                            value="{{ $tag->tags ?? old('tags') }}" id="name" placeholder="Name...">
-                            <span id="count" style="padding-left: 87%">0 </span><span> / 40</span>
+                        <input type="text" name="tags" id="name" class="form-control"
+                            value="{{ $tag->tags ?? old('tags') }}" placeholder="Name...">
                         @error('tags')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror

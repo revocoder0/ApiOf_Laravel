@@ -26,6 +26,7 @@
 
             </li>
             <li class="@if ($activePage == 'setting') active @endif">
+
                 <a href="{{ route('setting') }}">
                     <i class="now-ui-icons design_bullet-list-67"></i>
                     <p> {{ __('Setting') }} </p>
