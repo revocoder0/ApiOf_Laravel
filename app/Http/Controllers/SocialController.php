@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SocialRequest;
 use Illuminate\Http\Request;
 use App\Models\Social;
+use Illuminate\Support\Facades\File;
 
 class SocialController extends Controller
 {
@@ -37,11 +38,14 @@ class SocialController extends Controller
      */
     public function store(SocialRequest $request)
     {
-        $icon = $request->icon;
+            $image = $request->file('image'); 
         $name = $request->name;
         $link = $request->link;
+        $photo = time() . '.' . $image->getClientOriginalExtension();
+        $path = public_path('/storage/uploads/');
+        $image->move($path, $photo);
         $social = new Social;
-        $social->icon = $icon;
+        $social->icon = $photo;
         $social->name = $name;
         $social->link = $link;
         $social->save();
@@ -77,17 +81,25 @@ class SocialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SocialRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $name = $request->name;
-        $icon = $request->icon;
-        $link = $request->link;
-        $social = Social::findOrFail($id);
-        $social->name = $name;
-        $social->icon = $icon;
-        $social->link = $link;
+         $request->validate([
+            'name'=> 'required',
+            'link' => 'required',
+        ]);
+        $social = Social::where('id', $id)->first();
+        $social->name = $request->get('name');
+        $social->link = $request->get('link');
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $photo = time() . '.' . $image->getClientOriginalExtension();
+                $path = public_path('/storage/uploads/');
+                File::delete(public_path('/storage/uploads/'.$social->icon));
+                $image->move($path, $photo);
+                $social->icon = $photo;
+            }
         $social->save();
-        return redirect()->back()->with('success', 'Record updated successfully!');
+        return redirect()->back()->with('success', 'Record Updated successfully!');
     }
 
     /**
@@ -98,8 +110,17 @@ class SocialController extends Controller
      */
     public function destroy($id)
     {
-        if (Social::findOrFail($id)->delete()) {
-            return redirect()->back()->with('success', 'Record Deleted successfully!');
+        $socials = Social::findOrFail($id);
+        if ($socials->delete()){
+            $path=public_path('/storage/uploads/');
+            if(isset($socials->icon)) {
+                $photo=$socials->icon;
+                File::delete($path.''.$photo);
+                return redirect()->back()->with('success', 'Record Deleted successfully!');
+                }else{
+                    return redirect()->back();
+                }
         }
+       
     }
 }

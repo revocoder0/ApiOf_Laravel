@@ -9,7 +9,7 @@
                 </p>
             </div>
             <div class="modal-body">
-                <form class="row g-3" action="{{ route('social.update', $social->id) }}" method="POST">
+                <form class="row g-3" action="{{ route('social.update', $social->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="col-md-12 form-group">
@@ -20,14 +20,13 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-md-12 form-group">
-                        <label for="Name" class="form-label">{{__('Icon')}}</label>
-                        <input type="text" name="icon" id="name" class="form-control"
-                            value="{{ $social->icon ?? old('icon') }}" placeholder="Icon...">
-                        @error('icon')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+                     <!-- start icon -->
+                <div class="col-md-12">
+                <label for="exampleInputPassword1">icon </label>
+                <input type="file" name="image" class="form-control n-newborder">
+                @include('alerts.feedback', ['field' => 'image'])
+                </div>
+                  <!-- end icon -->
                     <div class="col-md-12 form-group">
                         <label for="Name" class="form-label">{{__('Link')}}</label>
                         <input type="text" name="link" id="name" class="form-control"

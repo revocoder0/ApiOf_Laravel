@@ -26,7 +26,7 @@ class SocialRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'icon' => ['required', 'max:100', Rule::unique('socials')->ignore($this->social )],
+            'image' => 'required|mimes:jpg,jpeg,png,webp|nullable',
             'name' => ['required', 'max:100', Rule::unique('socials')->ignore($this->social )],
             'link' => ['required', 'max:200', Rule::unique('socials')->ignore($this->social )],
         ];

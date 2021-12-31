@@ -45,7 +45,6 @@ Route::post('/tags_update/{id}', [TagsController::class, 'update'])->name('tags_
 //Social
 Route::resource('social', SocialController::class);
 Route::get('/social_delete/{id}', [SocialController::class, 'destroy'])->name('social_delete');
-
 //End Social
 
 // Route::post('/upload', [TagsController::class, 'update'])->name('tag_delete');
