@@ -37,6 +37,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if(count($posts) > 0)
                             @foreach ($posts as $key => $post)
                                 <tr id="pid{{ $post->id }}" class="text-center">
                                     <td>
@@ -71,6 +72,11 @@
                                 @include('post.modal.delete')
 
                             @endforeach
+                            @else
+                                <tr>
+                                    <td  colspan="10" class="text-center">Post Not Found!</td>
+                                </tr>
+                            @endif
                         </tbody>
                     </table>
                     {{-- Pagination --}}
