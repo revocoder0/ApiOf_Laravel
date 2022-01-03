@@ -39,6 +39,33 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Row for tags -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="title">Tags</label>
+                                            <select name="tags[]" id="tags" class="form-control" multiple>
+                                                <option selected disabled>Select Tags</option>
+                                                @foreach ($tags as $tag)
+                                                    <option value="{{ $tag->id }}"
+                                                       @if (isset($post))
+                                                            @if ($post->hasTag($tag->id))
+                                                                selected
+                                                            @endif
+                                                       @endif
+                                                    >
+                                                        {{ $tag->tags }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('tags')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <!-- end row for tags -->
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -89,6 +116,20 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="date">Edit Date</label>
+                                            <input class="form-control" placeholder="{{ __('Date...') }}" type="date"
+                                                name="created_at" value="{{Carbon\Carbon::parse($posts->created_at)->format('y-M-d')}}" autofocus>
+                                            @error('date')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                            
                             <div class="row">
                                 <label class="m-3">Feature</label>
                                 <div class="card-body">

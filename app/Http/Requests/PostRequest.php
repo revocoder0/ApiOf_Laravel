@@ -33,6 +33,7 @@ class PostRequest extends FormRequest
             'category' => 'required',
             'status' => 'boolean|nullable',
             'feature' => $feature,
+            'created_at' => 'nullable'
         ];
     }
 }

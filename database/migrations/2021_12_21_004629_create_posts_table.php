@@ -24,6 +24,7 @@ class CreatePostsTable extends Migration
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->tinyInteger('status')->null();
+            $table->integer('like')->default(false);
             $table->timestamps();
         });
     }
