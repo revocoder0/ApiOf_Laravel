@@ -22,8 +22,9 @@ class PostController extends Controller
     public function index()
     {
         $users = User::all();
+        $tags = Tags::all('id', 'tags');
         $posts = Post::orderBy('id', 'DESC')->paginate(10);
-        return view('post.index', compact('posts', 'users'));
+        return view('post.index', compact('posts', 'users', 'tags'));
     }
 
     /**
@@ -105,7 +106,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Post $post)
     {
         if ($post = Post::find($id)) {
             return view('post.detials', compact('post'));
@@ -120,10 +121,15 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Post $post)
     {
-        // $posts = Post::findorFail($id);
-        return view('post.edit')->with('posts', Post::findorFail($id))->with('categories', Category::all())->with('tags', Tags::all());
+        
+        
+        $posts=Post::findorFail($id)->load('tags');
+        $categories =  Category::all();
+        $tags = Tags::all('id', 'tags');
+        return view('post.edit', compact('posts', 'categories', 'tags' ));
+        
     }
 
     /**
@@ -186,10 +192,10 @@ class PostController extends Controller
         $post->status = $status;
         $post->category_id = $category;
         $post->created_at = $created_at;
-        $post->save();
         if($request->tags){
-            $post->tags()->attach($request->tags);
+            $post->tags()->sync($request->tags);
           }
+        $post->save();
         return redirect()->back()->with('success', 'Post Update successfully!');
     }
 

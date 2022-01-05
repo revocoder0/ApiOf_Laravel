@@ -30,7 +30,10 @@
                     <p>
                     {!! $post->description !!}
                     </p>
-                    <p>#tagname</p>
+                    <span class="m-3">#tagname</span>
+                        @foreach($post->tags as $key => $tag)
+                            <a href="#"><span class="btn btn-sm btn-primary">{{ $tag->tags }} </span></a>
+                        @endforeach
                 </div>
                 
             </div>

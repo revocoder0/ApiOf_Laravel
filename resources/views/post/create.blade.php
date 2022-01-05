@@ -4,18 +4,7 @@
 'activePage' => 'post',
 'activeNav' => '',
 ])
-<style>
-     /* .bootstrap-tagsinput .tag {
-         margin-right: 2px;
-         color: white !important;
-         background-color: #4137ce;
-         padding: .2em .6em .3em;
-         font-size: 100%;
-         font-weight: 700;
-         vertical-align: baseline;
-         border-radius: .25em;
-      }   */
-</style>
+
 
 @section('content')
     <div class="panel-header panel-header-sm">
@@ -55,15 +44,15 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="title">Tags</label>
-                                            <select name="tags[]" id="tags" class="form-control" multiple>
+                                            <select name="tags[]" id="tags" class="form-control tag-selector" multiple>
                                                 <option selected disabled>Select Tags</option>
                                                 @foreach ($tags as $tag)
                                                     <option value="{{ $tag->id }}"
-                                                       @if (isset($post))
-                                                            @if ($post->hasTag($tag->id))
+                                                        @if (isset($post))
+                                                            @if(in_array($tag->id, $post->tags->toArray()))
                                                                 selected
                                                             @endif
-                                                       @endif
+                                                        @endif
                                                     >
                                                         {{ $tag->tags }}</option>
                                                 @endforeach
@@ -170,7 +159,7 @@
     @endsection
     @push('js')
         <script>
-
+            
             //For image preview
             function previewImage(event) {
                 var output = document.getElementById('output');
@@ -179,34 +168,6 @@
             //Show Feature 
             let btnShow = document.querySelector('public');
 
-
-            // $('input').tagsinput({
-            //     typeahead: {
-            //         source: function(query) {
-            //         return $.getJSON('citynames.json');
-            //         }
-            //     }
-            // });
-            // $(function () {
-            //     $('input').on('change', function (event) {
-
-            //         var $element = $(event.target);
-            //         var $container = $element.closest('.example');
-
-            //         if (!$element.data('tagsinput'))
-            //         return;
-
-            //         var val = $element.val();
-            //         if (val === null)
-            //         val = "null";
-            //         var items = $element.tagsinput('items');
-
-            //         $('code', $('pre.val', $container)).html(($.isArray(val) ? JSON.stringify(val) : "\"" + val.replace('"', '\\"') + "\""));
-            //         $('code', $('pre.items', $container)).html(JSON.stringify($element.tagsinput('items')));
-
-
-            //     }).trigger('change');
-            // });
-
+            
         </script>
     @endpush

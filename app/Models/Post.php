@@ -24,11 +24,6 @@ class Post extends Model
     // Tags
     public function tags()
     {
-        return $this->belongsToMany(Tags::class);
-    }
-
-    public function hasTag($tagId)
-    {
-        return in_array($tagId, $this->tags->pluck('id')->toArray());
+        return $this->belongsToMany(Tags::class, 'post_tags', 'post_id', 'tags_id');
     }
 }

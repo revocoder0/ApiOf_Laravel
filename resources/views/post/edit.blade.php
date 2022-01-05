@@ -39,22 +39,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Row for tags -->
-                                <div class="row">
+                                 <!-- Row for tags -->
+                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="title">Tags</label>
-                                            <select name="tags[]" id="tags" class="form-control" multiple>
+                                            <select name="tags[]" id="tags" class="form-control tag-selector" multiple>
                                                 <option selected disabled>Select Tags</option>
-                                                @foreach ($tags as $tag)
-                                                    <option value="{{ $tag->id }}"
-                                                       @if (isset($post))
-                                                            @if ($post->hasTag($tag->id))
-                                                                selected
-                                                            @endif
-                                                       @endif
-                                                    >
-                                                        {{ $tag->tags }}</option>
+                                                @foreach($tags as $tag)
+                                                    <option value="{{ $tag->id }}"{{ in_array($tag->id, $posts->tags->pluck('id')->toArray()) ? " selected" : "" }}>{{ $tag->tags }}</option>
                                                 @endforeach
                                             </select>
                                             @error('tags')
