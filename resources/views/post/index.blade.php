@@ -53,8 +53,8 @@
                                             </div>
                                         @endif
                                     </td>
-                                    <td>{{ Str::limit($post->title, 20) }}</td>
-                                    <td> {{ Str::limit($post->short_description, 20) }}</td>
+                                    <td>{{ Str::limit($post->title, 10) }}</td>
+                                    <td> {{ Str::limit($post->short_description, 10) }}</td>
                                     <td>{{ $post->category->name }}</td>
                                     <td>{{ $post->user->name }}</td>
                                     <td>{{ $post->status }}</td>

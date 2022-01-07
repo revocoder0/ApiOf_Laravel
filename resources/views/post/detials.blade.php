@@ -11,35 +11,31 @@
     </div>
     <div class="content">
         <div class="card">
-            <div class="card-group ml-5">
-                <div class="card-title">
-                    <h4 class="text-center">{{ $post->title }}</h4>
+            <div class="card-group m-3">
+                
+                
+                <div class="card-body">
+                <div class="card-title mt-3">
+                    <h3 class="font-weight-bold">{{ $post->title }}</h3>
+                    <p class="font-weight-bold">{{ $post->category->name }}</p>
                 </div>
                 <div class="card-img">
-                    <ul class="list-inline">
-                        <li class="list-inline-item"><i class="now-ui-icons ui-2_time-alarm"> </i></li>
-                        {{ $post->created_at->diffForHumans() }}
-                        <li class="list-inline-item ml-5"><i class="now-ui-icons users_single-02"></i></li>
-                        {{ $post->user->name }}
-                    </ul>
+                    {{ $post->user->name }}
+                       <p> Posted on {{Carbon\Carbon::parse($post->created_at)->format('M d, Y') }}</p>
+                        
                     @if ($post->status===1)
-                        <img src="{{ asset('/storage/uploads/' . $post->feature) }}" class="img-thumbnial" style="width: 50%;">
+                        <img src="{{ asset('/storage/uploads/' . $post->feature) }}" class="img-thumbnial w-100">
                     @endif
-                    
-                    <ul class="list-inline">
-                        <li class="list-inline-item">Arakan Reader, </li>
-                        <li class="list-inline-item">{{ Carbon\Carbon::parse($post->created_at)->format('y-M-d') }}</i></li>
-                    </ul>
                 </div>
-                <div class="card-body">
+                    <p>
                     {!! $post->description !!}
+                    </p>
+                    <span class="m-3">#tagname</span>
+                        @foreach($post->tags as $key => $tag)
+                            <a href="#"><span class="btn btn-sm btn-primary">{{ $tag->tags }} </span></a>
+                        @endforeach
                 </div>
-                <div class="card-footer">
-                    <ul class="list-inline">
-                        <li class="list-inline-item">tagname</li>
-                        <li class="list-inline-item">{{ $post->category->name }}</li>
-                    </ul>
-                </div>
+                
             </div>
         </div>
     </div>

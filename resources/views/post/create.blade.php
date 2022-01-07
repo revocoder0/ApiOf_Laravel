@@ -4,9 +4,7 @@
 'activePage' => 'post',
 'activeNav' => '',
 ])
-<style>
 
-</style>
 
 @section('content')
     <div class="panel-header panel-header-sm">
@@ -41,6 +39,33 @@
                                         </div>
                                     </div>
                                 </div>
+                                 <!-- Row for tags -->
+                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="title">Tags</label>
+                                            <select name="tags[]" id="tags" class="form-control tag-selector" multiple>
+                                                <option selected disabled>Select Tags</option>
+                                                @foreach ($tags as $tag)
+                                                    <option value="{{ $tag->id }}"
+                                                        @if (isset($post))
+                                                            @if(in_array($tag->id, $post->tags->toArray()))
+                                                                selected
+                                                            @endif
+                                                        @endif
+                                                    >
+                                                        {{ $tag->tags }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('tags')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <!-- end row for tags -->
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -52,7 +77,6 @@
                                             @enderror
                                         </div>
                                     </div>
-
                                 </div>
                         </div>
                     </div> <!-- end card -->
@@ -93,7 +117,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <!-- row for feature -->
+                            <div class="row"> 
                                 <label class="m-3">Feature</label>
                                 <div class="card-body">
                                     <img id="output">
@@ -134,6 +159,7 @@
     @endsection
     @push('js')
         <script>
+            
             //For image preview
             function previewImage(event) {
                 var output = document.getElementById('output');
@@ -142,5 +168,6 @@
             //Show Feature 
             let btnShow = document.querySelector('public');
 
+            
         </script>
     @endpush

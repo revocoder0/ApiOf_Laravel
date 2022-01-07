@@ -20,4 +20,10 @@ class Post extends Model
     {
         return $this->belongsTo(User::class)->withDefault();
     }
+
+    // Tags
+    public function tags()
+    {
+        return $this->belongsToMany(Tags::class, 'post_tags', 'post_id', 'tags_id');
+    }
 }
