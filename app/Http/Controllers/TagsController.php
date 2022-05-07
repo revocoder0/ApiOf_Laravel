@@ -39,7 +39,6 @@ class TagsController extends Controller
     public function store(TagsRequest $request)
     {
         $tag =  $request->tags;
-
         $tags = new Tags;
         $tags->tags = $tag;
         $tags->save();
@@ -86,7 +85,7 @@ class TagsController extends Controller
         $tag = Tags::findOrFail($id);
         $tag->tags = $tags;
         $tag->save();
-     return redirect()->back()->with('success', 'Record Updated successfully!');
+        return redirect()->back()->with('success', 'Record Updated successfully!');
     }
 
     /**
@@ -98,7 +97,7 @@ class TagsController extends Controller
     public function destroy($id)
     {
         if (Tags::findOrFail($id)->delete()) {
-            return redirect()->back()->with('success', 'Record Deleted successfully!');
+            return redirect()->back()->with('success', 'Record deleted successfully!');
         }
     }
 

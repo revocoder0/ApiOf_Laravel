@@ -28,10 +28,8 @@
                             <th>No</th>
                             <th>Feature</th>
                             <th>Title</th>
-                            <th>Short Description</th>
                             <th>Category</th>
                             <th>User</th>
-                            <th>Status</th>
                             <th>Creation date</th>
                             <th>Actions</th>
                             </tr>
@@ -53,11 +51,9 @@
                                             </div>
                                         @endif
                                     </td>
-                                    <td>{{ Str::limit($post->title, 10) }}</td>
-                                    <td> {{ Str::limit($post->short_description, 10) }}</td>
+                                    <td>{{ Str::limit($post->title, 30) }}</td>
                                     <td>{{ $post->category->name }}</td>
                                     <td>{{ $post->user->name }}</td>
-                                    <td>{{ $post->status }}</td>
                                     <td>{{ Carbon\Carbon::parse($post->created_at)->format('y-M-d') }}</td>
                                     <td class="text-right">
                                         <a href="{{ route('detials', $post->id) }}"><button
