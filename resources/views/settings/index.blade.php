@@ -39,25 +39,34 @@
                                         @include('alerts.feedback', ['field' => 'email'])
                                     </div>
 
-                                    <label>Logo</label> <br>
+                                    <label>Logo</label>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group text-center btn btn-dark btn-sm">
+                                                <input type="file" name="logo" id="image" class="inputfile"
+                                                    onchange="previewLogo(event)" autofocus />
+                                            
+                                                <label for="file">Choose file </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <img id="logo" width="80"><br>
+                                        </div>
+                                    </div>
 
-                                    <img id="logo"><br>
-
-                                    <div class="form-group text-center btn btn-dark btn-sm">
-                                        <input type="file" name="logo" id="image" class="inputfile"
-                                            onchange="previewLogo(event)" autofocus />
-                                        <label for="file">Change Logo</label>
-
-                                    </div><br />
-                                    <label>Cover Photo</label><br>
-
-                                    <img id="output"><br>
-
-                                    <div class="form-group text-center btn btn-dark btn-sm">
-                                        <input type="file" name="coverphoto" id="image" class="inputfile"
-                                            onchange="previewImage(event)" autofocus />
-                                        <label for="file">Change Cover Photo</label>
-
+                                    <label>Cover Photo</label>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group text-center btn btn-dark btn-sm">
+                                                <input type="file" name="coverphoto" id="image" class="inputfile"
+                                                    onchange="previewImage(event)" autofocus />
+                                                <label for="file">Choose file</label>
+        
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <img id="output" width="100"><br>
+                                        </div>
                                     </div>
 
                                     <div class="form-group mt-2">

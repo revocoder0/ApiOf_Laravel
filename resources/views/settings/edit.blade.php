@@ -41,27 +41,35 @@
                                         @include('alerts.feedback', ['field' => 'email'])
                                     </div>
 
-                                    <label>Logo</label> <br>
-
-                                    <img id="logo"><br>
-
-                                    <div class="form-group text-center btn btn-dark btn-sm">
-                                        <input type="file" name="logo" id="image" class="inputfile"
-                                            onchange="previewLogo(event)" autofocus />
-                                        <label for="file">Change Logo</label>
-
-                                    </div><br />
-                                    <label>Cover Photo</label><br>
-
-                                    <img id="output"><br>
-
-                                    <div class="form-group text-center btn btn-dark btn-sm">
-                                        <input type="file" name="coverphoto" id="image" class="inputfile"
-                                            onchange="previewImage(event)" autofocus />
-                                        <label for="file">Change Cover Photo</label>
-
+                                    <label>Logo</label>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group text-center btn btn-dark btn-sm">
+                                                <input type="file" name="logo" id="image" class="inputfile"
+                                                    onchange="previewLogo(event)" autofocus />
+                                            
+                                                <label for="file">Choose file </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <img id="logo" width="80"><br>
+                                        </div>
                                     </div>
 
+                                    <label>Cover Photo</label>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group text-center btn btn-dark btn-sm">
+                                                <input type="file" name="coverphoto" id="image" class="inputfile"
+                                                    onchange="previewImage(event)" autofocus />
+                                                <label for="file">Choose file</label>
+        
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <img id="output" width="100"><br>
+                                        </div>
+                                    </div>
                                     <div class="form-group mt-2">
                                         <label for="description">{{ __(' Description') }}</label>
                                         <textarea name="description" id="description" rows="5" class="form-control"
@@ -84,13 +92,13 @@
                 <div class="card card-user">
                     <div class="image">
                         <img src="{{ asset('/storage/upload/' . $setting->cover_photo) }}"
-                            alt="{{ $setting->cover_photo }}" title="cover photo" class="w-100">
+                            alt="{{ $setting->cover_photo }}" title="cover photo">
                     </div>
                     <div class="card-body">
                         <div class="author">
                             <a href="#">
                                 <img class="avatar border-gray" src="{{ asset('/storage/upload/' . $setting->logo) }}"
-                                    alt="{{ $setting->logo }}" title="logo">
+                                    alt="{{ $setting->logo }}" title="logo" class="w-80">
                                 <h5 class="title">{{ $setting->title }}</h5>
                             </a>
                             <p class="text-primary">

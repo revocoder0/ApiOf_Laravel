@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Category;
-use Carbon\Carbon;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Tags;
@@ -21,10 +20,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        $tags = Tags::all('id', 'tags');
-        $posts = Post::orderBy('id', 'DESC')->paginate(10);
-        return view('post.index', compact('posts', 'users', 'tags'));
+        $posts = Post::with('user')->with('category')->orderBy('id', 'DESC')->paginate(10);
+        return view('post.index', compact('posts'));
     }
 
     /**
@@ -34,8 +31,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        
-        return view('post.create')->with('categories', Category::all())->with('tags', Tags::all());
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $tags = Tags::orderBy('tags', 'ASC')->get();
+        return view('post.create', compact('categories', 'tags'));
     }
 
     /**
@@ -80,8 +78,8 @@ class PostController extends Controller
 
             $feature = $request->file('feature');
             $path = public_path('/storage/uploads/');
-            $name = time() . "." . $feature->getClientOriginalExtension();
-            $feature->move($path, $name);
+            $filename = time() . "." . $feature->getClientOriginalExtension();
+            $feature->move($path, $filename);
         }
 
 
@@ -91,13 +89,13 @@ class PostController extends Controller
         $post->short_description = $short_description;
         $post->status = $status;
         $post->category_id = $category;
-        $post->feature = $name;
+        $post->feature = $filename;
         $post->user_id = Auth::user()->id;
         $post->save();
         if($request->tags){
           $post->tags()->attach($request->tags);
         }
-        return redirect()->back()->with('success', 'Post inserted successfully!');
+        return redirect()->back()->with('success', 'Post created successfully!');
     }
 
     /**
@@ -108,11 +106,9 @@ class PostController extends Controller
      */
     public function show($id, Post $post)
     {
-        if ($post = Post::find($id)) {
-            return view('post.detials', compact('post'));
-        } else {
-            return redirect()->back();
-        }
+        $post = Post::findOrFail($id);
+        return view('post.detials', compact('post'));
+
     }
 
     /**
@@ -123,12 +119,10 @@ class PostController extends Controller
      */
     public function edit($id, Post $post)
     {
-        
-        
         $posts=Post::findorFail($id)->load('tags');
-        $categories =  Category::all();
-        $tags = Tags::all('id', 'tags');
-        return view('post.edit', compact('posts', 'categories', 'tags' ));
+        $categories = Category::orderBy('name', 'ASC')->get();
+        $tags = Tags::orderBy('tags', 'ASC')->get();
+        return view('post.edit', compact('posts', 'categories', 'tags'));
         
     }
 
@@ -176,15 +170,15 @@ class PostController extends Controller
         if ($request->hasFile('feature')) {
             $feature = $request->file('feature');
             $path = public_path('/storage/uploads/');
-            $name = time() . "." . $feature->getClientOriginalExtension();
-            $feature->move($path, $name);
+            $filename = time() . "." . $feature->getClientOriginalExtension();
+            $feature->move($path, $filename);
 
 
             if (isset($post->feature)) {
                 $oldname = $post->feature;
                 File::delete($path . '' . $oldname);
             }
-            $post->feature = $name;
+            $post->feature = $filename;
         }
         $post->title = $title;
         $post->description = $description;
@@ -216,7 +210,7 @@ class PostController extends Controller
             File::delete($path. '' . $oldname);
         }
         if (Post::where('id', $id)->delete()) {
-            return redirect()->back()->with('success', 'Record Delete Successfully!');
+            return redirect()->back()->with('success', 'Record deleted successfully!');
          }else{
               return redirect()->back();
          }

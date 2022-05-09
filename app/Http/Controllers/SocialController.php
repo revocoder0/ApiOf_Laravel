@@ -49,7 +49,7 @@ class SocialController extends Controller
         $social->name = $name;
         $social->link = $link;
         $social->save();
-        return redirect()->back()->with('success', 'Record inserted successfully!');
+        return redirect()->back()->with('success', 'Record created successfully!');
     }
 
     /**
@@ -84,10 +84,11 @@ class SocialController extends Controller
     public function update(Request $request, $id)
     {
          $request->validate([
-            'name'=> 'required',
-            'link' => 'required',
+            'name'=> 'required|string|max:100',
+            'link' => 'required|string|max:244',
+            'image'=>'nullable|image|max:1024|mimes:jpg,png,jpeg'
         ]);
-        $social = Social::where('id', $id)->first();
+        $social = Social::find($id);
         $social->name = $request->get('name');
         $social->link = $request->get('link');
             if ($request->hasFile('image')) {
