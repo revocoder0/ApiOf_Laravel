@@ -3,7 +3,7 @@
     Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
 -->
     <div class="logo">
-        <a href="#" class="simple-text logo-normal">
+        <a href="{{ route('home') }}" class="simple-text logo-normal">
             {{ __('Northern Alliance') }}
         </a>
     </div>
@@ -17,18 +17,12 @@
             </li>
             <li class="@if ($activePage == 'post') active @endif">
                 <a href="{{ route('post') }}">
-                    <i class="now-ui-icons design_bullet-list-67"></i>
+                    <i class="now-ui-icons files_paper"></i>
                     <p> {{ __('Post') }} </p>
                 </a>
 
             </li>
-            <li class="@if ($activePage == 'setting') active @endif">
-
-                <a href="{{ route('setting') }}">
-                    <i class="now-ui-icons design_bullet-list-67"></i>
-                    <p> {{ __('Setting') }} </p>
-                </a>
-            </li>
+            
 
             </li>
 
@@ -38,11 +32,23 @@
                     <p>{{ __('Category') }}</p>
                 </a>
             </li>
+            <li class="@if ($activePage == 'tags') active @endif">
+                <a href="{{ route('tags') }}">
+                    <i class="now-ui-icons shopping_tag-content"></i>
+                    <p>{{ __('Tags') }}</p>
+                </a>
+            </li>
+            <li class="@if ($activePage == 'social') active @endif">
+                <a href="{{ route('social.index') }}">
+                    <i class="now-ui-icons objects_globe"></i>
+                    <p>{{ __('Social') }}</p>
+                </a>
+            </li>
             <li>
                 <a data-toggle="collapse" href="#laravelExamples">
                     <i class="fab fa-laravel"></i>
                     <p>
-                        {{ __('Laravel Examples') }}
+                        {{ __('Users ') }}
                         <b class="caret"></b>
                     </p>
                 </a>
@@ -60,21 +66,17 @@
                                 <p> {{ __('User Management') }} </p>
                             </a>
                         </li>
+                        <li class="@if ($activePage == 'setting') active @endif">
+
+                <a href="{{ route('setting') }}">
+                    <i class="now-ui-icons loader_gear"></i>
+                    <p> {{ __('Setting') }} </p>
+                </a>
+            </li>
                     </ul>
                 </div>
 
-            <li class="@if ($activePage == 'tags') active @endif">
-                <a href="{{ route('tags') }}">
-                    <i class="now-ui-icons shopping_tag-content"></i>
-                    <p>{{ __('Tags') }}</p>
-                </a>
-            </li>
-            <li class="@if ($activePage == 'social') active @endif">
-                <a href="{{ route('social.index') }}">
-                    <i class="now-ui-icons objects_globe"></i>
-                    <p>{{ __('Social') }}</p>
-                </a>
-            </li>
+           
 
         </ul>
     </div>

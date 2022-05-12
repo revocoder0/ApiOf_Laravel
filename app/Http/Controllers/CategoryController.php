@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Requests\CategoryRequest;
+use Illuminate\Support\Str;
+
 
 class CategoryController extends Controller
 {
@@ -44,7 +46,7 @@ class CategoryController extends Controller
 
         $category = new Category;
         $category->name = $name;
-        $category->slug = $slug;
+        $category->slug = Str::slug($name);
         $category->order = $order;
         $category->save();
         return redirect()->back()->with('success', 'Record inserted successfully!');
@@ -87,7 +89,7 @@ class CategoryController extends Controller
 
         $category = Category::findOrFail($id);
         $category->name = $name;
-        $category->slug = $slug;
+        $category->slug = Str::slug($name);
         $category->order = $order;
         $category->save();
         return redirect('/category')->with('success', 'Record updated successfully!');

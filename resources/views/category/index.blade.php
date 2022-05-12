@@ -25,7 +25,7 @@
             <div class="card-body">
                 <form class="row g-3" action="{{ route('category.store') }}" method="POST">
                     @csrf
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-5 form-group">
                         <label for="Name" class="form-label">{{__('Name')}}</label>
                         <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}"
                             placeholder="Name...">
@@ -33,17 +33,7 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <div class="col-md-4 form-group">
-                        <label for="Slug" class="form-label">{{__('Slug')}}</label>
-                        <input type="text" name="slug" class="form-control" id="slug" value="{{ old('slug') }}"
-                            placeholder="Slug...">
-                        @error('slug')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-5 form-group">
                         <label for="Order" class="form-label">{{__('Order')}}</label>
                         <input type="text" name="order" class="form-control" id="order" value="{{ old('order') }}"
                             placeholder="Order...">
@@ -52,7 +42,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-2 mt-3">
                         <button type="submit" class="btn btn-primary btn-round ">{{ __('Save') }}</button>
                     </div>
                 </form>
