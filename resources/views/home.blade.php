@@ -11,12 +11,13 @@
   </div>
   <div class="content">
     <div class="row">
+      @foreach ($category_posts_count as $category)
       <div class="col-lg-3">
         <div class="card card-chart">
           <div class="card-header">
-            <h5 class="card-category">100 posts</h5>
-            <h4 class="card-title">FPNCC Members</h4>
-            <div class="dropdown">
+            <h5 class="card-category">{{$category->posts->count()}} posts</h5>
+            <h4 class="card-title"><a href="{{route('categoryposts', $category->id)}}" class="text-decoration-none">{{$category->name}}</a></h4>
+            {{-- <div class="dropdown">
               <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
                 <i class="now-ui-icons loader_gear"></i>
               </button>
@@ -26,7 +27,7 @@
                 <a class="dropdown-item" href="#">Something else here</a>
                 <a class="dropdown-item text-danger" href="#">Remove Data</a>
               </div>
-            </div>
+            </div> --}}
           </div>
           <div class="card-body">
             <!-- <div class="chart-area">
@@ -35,98 +36,13 @@
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+              <i class="now-ui-icons design_bullet-list-67"></i> Category
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-3">
-        <div class="card card-chart">
-          <div class="card-header">
-            <h5 class="card-category">50 posts</h5>
-            <h4 class="card-title">ULA/AA</h4>
-            <div class="dropdown">
-              <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                <i class="now-ui-icons loader_gear"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <a class="dropdown-item text-danger" href="#">Remove Data</a>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <!-- <div class="chart-area">
-              <canvas id="lineChartExample"></canvas>
-            </div> -->
-          </div>
-          <div class="card-footer">
-            <div class="stats">
-              <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3">
-        <div class="card card-chart">
-          <div class="card-header">
-            <h5 class="card-category">30 posts</h5>
-            <h4 class="card-title">MNDAA</h4>
-            <div class="dropdown">
-              <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                <i class="now-ui-icons loader_gear"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <a class="dropdown-item text-danger" href="#">Remove Data</a>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <!-- <div class="chart-area">
-              <canvas id="lineChartExample"></canvas>
-            </div> -->
-          </div>
-          <div class="card-footer">
-            <div class="stats">
-              <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3">
-        <div class="card card-chart">
-          <div class="card-header">
-            <h5 class="card-category">20 posts</h5>
-            <h4 class="card-title">TNLA</h4>
-            <div class="dropdown">
-              <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                <i class="now-ui-icons loader_gear"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <a class="dropdown-item text-danger" href="#">Remove Data</a>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <!-- <div class="chart-area">
-              <canvas id="lineChartExample"></canvas>
-            </div> -->
-          </div>
-          <div class="card-footer">
-            <div class="stats">
-              <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
-            </div>
-          </div>
-        </div>
-      </div>
+      @endforeach
+
     </div>
     <div class="row">
     <div class="col-md-6">

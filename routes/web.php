@@ -67,6 +67,7 @@ Route::delete('/selected-posts',[PostController::class,'deleteCheckedPosts'])->n
 // Category Route
 Route::resource('category', CategoryController::class);
 Route::delete('/selected-category',[CategoryController::class,'deleteCheckCategory'])->name('category.deleteCheckCategory');
+Route::get('/categorys/{id}', [CategoryController::class,'category'])->name('categoryposts');
 // End Category Route
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Post;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Str;
 
@@ -114,5 +115,11 @@ class CategoryController extends Controller
         $ids = $request->ids;
         Category::whereIn('id',$ids)->delete();
         return response()->json(['success'=>"Record deleted successfully!"]);
+    }
+    public function category($id)
+    {
+        $categoryposts = Post::where('category_id',$id)->get();
+        // dd($category_posts_count);
+        return view('category.partials.allcategorypost',compact('categoryposts'));
     }
 }

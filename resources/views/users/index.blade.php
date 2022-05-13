@@ -42,21 +42,23 @@
                 </tr>
               </tfoot>
               <tbody>
-                                  <tr>
+                                 @foreach($users as $user)
+                                 <tr>
                     <td>
                       <span class="avatar avatar-sm rounded-circle">
                         <img src="{{asset('assets')}}/img/default-avatar.png" alt="" style="max-width: 80px; border-radiu: 100px">
                       </span>
                     </td>
-                    <td>Admin</td>
-                    <td>admin@nowui.com</td>
-                    <td>25/02/2020 10:14</td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->created_at->format("d/m/Y")}}</td>
                       <td class="text-right">
                                              <a type="button" href="#" rel="tooltip" class="btn btn-success btn-icon btn-sm " data-original-title="" title="">
                         <i class="now-ui-icons ui-2_settings-90"></i>
                       </a>
                                                               </td>
                   </tr>
+                                 @endforeach
                               </tbody>
             </table>
           </div>
