@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Post;
 use App\Http\Requests\CategoryRequest;
+use Illuminate\Support\Str;
+
 
 class CategoryController extends Controller
 {
@@ -44,7 +47,7 @@ class CategoryController extends Controller
 
         $category = new Category;
         $category->name = $name;
-        $category->slug = $slug;
+        $category->slug = Str::slug($name);
         $category->order = $order;
         $category->save();
         return redirect()->back()->with('success', 'Record inserted successfully!');
@@ -87,7 +90,7 @@ class CategoryController extends Controller
 
         $category = Category::findOrFail($id);
         $category->name = $name;
-        $category->slug = $slug;
+        $category->slug = Str::slug($name);
         $category->order = $order;
         $category->save();
         return redirect('/category')->with('success', 'Record updated successfully!');
@@ -112,5 +115,11 @@ class CategoryController extends Controller
         $ids = $request->ids;
         Category::whereIn('id',$ids)->delete();
         return response()->json(['success'=>"Record deleted successfully!"]);
+    }
+    public function category($id)
+    {
+        $categoryposts = Post::where('category_id',$id)->get();
+        // dd($category_posts_count);
+        return view('category.partials.allcategorypost',compact('categoryposts'));
     }
 }

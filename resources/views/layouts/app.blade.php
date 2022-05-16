@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
     
     <title>
-        Now UI Dashboard by Creative Tim
+    Northern Alliance| Admin Dashboard
     </title>
 </head>
 

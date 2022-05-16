@@ -1,7 +1,7 @@
 @extends('layouts.app', [
 'class' => 'sidebar-mini ',
-'namePage' => 'Category',
-'activePage' => 'category',
+'namePage' => 'All Posts Related To Category',
+'activePage' => 'home',
 'activeNav' => '',
 ])
 
@@ -18,11 +18,9 @@
             {{-- End Success Message --}}
 
             <div class="card-header">
-                <h5 class="title">{{ __(' Category') }}</h5>
+                <h5 class="title">Posts of {{$categoryposts[0]->category->name}}</h5>
             </div>
 
-            {{-- Partials/CreateForm --}}
-            @include('category.partials.form')
         </div>
         {{-- Category Display Table --}}
         <div class="row">
@@ -43,29 +41,30 @@
                                         No
                                     </th>
                                     <th>
-                                        Name
+                                        Title
                                     </th>
                                     <th>
-                                        Slug
+                                        Category
                                     </th>
                                     <th>
-                                        Order
+                                        Author
                                     </th>
+                                   
                                     <th>
                                         Creation Date
                                     </th>
-                                    <th class="text-right">
+                                    {{-- <th class="text-right">
                                         Actions
-                                    </th>
+                                    </th> --}}
                                 </thead>
                                 <tbody>
                                     {{-- Partials/Category --}}
-                                    @include('category.partials.category')
+                                    @include('category.partials.categorypostlist')
                                 </tbody>
                             </table>
                             {{-- Pagination --}}
                             <div class="d-flex ">
-                                {!! $categories->links() !!}
+                                {{-- {!! $categoryposts->links() !!} --}}
                             </div>
                             {{-- End Pagination --}}
                         </div>

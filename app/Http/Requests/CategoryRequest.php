@@ -25,7 +25,6 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|min:2|max:100',
-            'slug' => 'required|min:2|max:100',
             'order' => 'required|integer|min:1|max:255',
         ];
     }
