@@ -104,7 +104,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, Post $post)
+    public function show($id)
     {
         $post = Post::findOrFail($id);
         return view('post.detials', compact('post'));
@@ -117,13 +117,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, Post $post)
+    public function edit($id)
     {
         $posts=Post::findorFail($id)->load('tags');
         $categories = Category::orderBy('name', 'ASC')->get();
         $tags = Tags::orderBy('tags', 'ASC')->get();
         return view('post.edit', compact('posts', 'categories', 'tags'));
-        
+
     }
 
     /**
@@ -220,5 +220,12 @@ class PostController extends Controller
         $post_ids = $request->post_ids;
         Post::whereIn('id', $post_ids)->delete();
         return response()->json(['success' => "Posts have been deleted!"]);
+    }
+
+    public function tagpostall($id)
+    {
+        $posts = Tags::all();
+        $tags =Tags::find($id)->posts()->orderby('created_at', 'DESC')->get();
+        return view('tags.show',compact('tags', 'posts'));
     }
 }

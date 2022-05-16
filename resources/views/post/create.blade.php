@@ -22,7 +22,7 @@
                             <h5 class="title">{{ __(' Add Posts') }}</h5>
                         </div>
                         <div class="card-body">
-                            <form method="post" action="{{ route('poststore') }}" autocomplete="off"
+                            <form method="post" action="{{ route('post.store') }}" autocomplete="off"
                                 enctype="multipart/form-data">
                                 @csrf
 
@@ -118,7 +118,7 @@
                                 </div>
                             </div>
                             <!-- row for feature -->
-                            <div class="row"> 
+                            <div class="row">
                                 <label class="m-3">Feature</label>
                                 <div class="card-body">
                                     <img id="output">
@@ -138,7 +138,7 @@
                                 <input class="m-3" name="status" type="checkbox" value="1">
                                 <label class="m-3">Show Feature</label>
                             </div> <!-- end row -->
-                            
+
                             <div class="row mt-4">
                                 <!-- submit and reset button -->
                                 <div class="col-md-6">
@@ -159,15 +159,15 @@
     @endsection
     @push('js')
         <script>
-            
+
             //For image preview
             function previewImage(event) {
                 var output = document.getElementById('output');
                 output.src = URL.createObjectURL(event.target.files[0]);
             }
-            //Show Feature 
+            //Show Feature
             let btnShow = document.querySelector('public');
 
-            
+
         </script>
     @endpush

@@ -1,5 +1,5 @@
 <!-- start form -->
-<form action="{{route('tag_post')}}" method="POST" class="row g-3">
+<form action="{{route('tags.store')}}" method="POST" class="row g-3">
     @csrf
       <div class="col-md-12 form-group">
         <label for="Name" class="form-label">Name</label>

@@ -9,8 +9,9 @@
                 </p>
             </div>
             <div class="modal-body">
-                <form class="row g-3" action="{{ route('tags_update', $tag->id) }}" method="POST">
+                <form class="row g-3" action="{{ route('tags.update', $tag->id) }}" method="POST">
                     @csrf
+                    @method('PATCH')
                     <div class="col-md-12 form-group">
                         <label for="Name" class="form-label">{{__('Name')}}</label>
                         <input type="text" name="tags" id="name" class="form-control"

@@ -12,8 +12,9 @@
             </div>
             <div class="modal-body">
                 Are you sure you want to permanently remove this post?
-                <form action="{{ route('delete_post', $post) }}" method="GET" id="post_form">
+                <form action="{{ route('post.destroy', $post) }}" method="POST" id="post_form">
                     @csrf
+                    @method('DELETE')
                     <input type="hidden" id="del_row" name="id">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-round btn-secondary" data-dismiss="modal">{{__('Cancel')}}</button>

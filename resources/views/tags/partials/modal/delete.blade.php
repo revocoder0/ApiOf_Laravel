@@ -10,8 +10,9 @@
             </div>
             <div class="modal-body">
             Are you sure you want to permanently remove this tages?
-                <form class="row g-3" action="{{ route('tag_delete', $tag->id) }}" method="GET">
+                <form class="row g-3" action="{{ route('tags.destroy', $tag->id) }}" method="POST">
                     @csrf
+                    @method('DELETE')
                     <input type="hidden" id="del_row" name="id">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-round btn-secondary" data-dismiss="modal">{{__('Cancel')}}</button>

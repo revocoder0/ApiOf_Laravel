@@ -20,10 +20,10 @@
             <!-- table start -->
             <div class="card-body">
                 <a href="#" id="deleteAllSelectedPost" class="btn btn-danger btn-sm text-white">Delete Select All</a> <a
-                    class="btn btn-primary btn-sm text-white pull-right" href="{{ route('postcreate') }}">Add Post</a>
+                    class="btn btn-primary btn-sm text-white pull-right" href="{{ route('post.create') }}">Add Post</a>
                 <div class="table-responsive">
                     <table class="table">
-                        <thead class="text-primary" >
+                        <thead class="text-primary text-center" >
                             <th><input type="checkbox" class="selectAll" id="CheckAll"></th>
                             <th>No</th>
                             <th>Feature</th>
