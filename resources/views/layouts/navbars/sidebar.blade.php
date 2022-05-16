@@ -16,13 +16,13 @@
                 </a>
             </li>
             <li class="@if ($activePage == 'post') active @endif">
-                <a href="{{ route('post') }}">
+                <a href="{{ route('post.index') }}">
                     <i class="now-ui-icons files_paper"></i>
                     <p> {{ __('Post') }} </p>
                 </a>
 
             </li>
-            
+
 
             </li>
 
@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li class="@if ($activePage == 'tags') active @endif">
-                <a href="{{ route('tags') }}">
+                <a href="{{ route('tags.index') }}">
                     <i class="now-ui-icons shopping_tag-content"></i>
                     <p>{{ __('Tags') }}</p>
                 </a>
@@ -76,7 +76,7 @@
                     </ul>
                 </div>
 
-           
+
 
         </ul>
     </div>

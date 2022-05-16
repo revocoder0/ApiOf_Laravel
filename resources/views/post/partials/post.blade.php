@@ -1,6 +1,6 @@
 @if(count($posts) > 0)
 @foreach ($posts as $key => $post)
-    <tr id="pid{{ $post->id }}">
+    <tr id="pid{{ $post->id }}" class="text-center">
         <td>
             <input type="checkbox" name="post_ids" class="checkBoxClass"
                 value="{{ $post->id }}">
@@ -19,9 +19,9 @@
         <td>{{ $post->user->name }}</td>
         <td>{{ Carbon\Carbon::parse($post->created_at)->format('y-M-d') }}</td>
         <td>
-            <a href="{{ route('detials', $post->id) }}"><button
-                    class="btn btn-secondary btn-sm">Detail</button></a>
-            <a href="{{ route('postedit', $post->id) }}"><button
+            <a href="{{ route('post.show', $post->id) }}"><button
+                class="btn btn-secondary btn-sm">Detail</button></a>
+            <a href="{{ route('post.edit', $post->id) }}"><button
                     class="btn btn-primary btn-sm">Edit</button></a>
             <a class="btn btn-danger btn-sm del_btn" data-toggle="modal"
                 href="#exampleModalCenter"

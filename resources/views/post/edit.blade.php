@@ -22,7 +22,7 @@
                         </div>
                         <div class="card-body">
 
-                            <form method="post" action="{{ route('postupdate', $posts->id) }}" autocomplete="off"
+                            <form method="post" action="{{ route('post.update', $posts->id) }}" autocomplete="off"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
@@ -122,7 +122,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            
+
                             <div class="row">
                                 <label class="m-3">Feature</label>
                                 <div class="card-body">

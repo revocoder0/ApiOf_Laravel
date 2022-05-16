@@ -24,6 +24,6 @@ class Post extends Model
     // Tags
     public function tags()
     {
-        return $this->belongsToMany(Tags::class, 'post_tags', 'post_id', 'tags_id');
+        return $this->belongsToMany(Tags::class, 'post_tags')->withPivot('post_id', 'tags_id');
     }
 }
