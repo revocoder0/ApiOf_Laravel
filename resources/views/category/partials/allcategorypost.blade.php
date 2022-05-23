@@ -18,7 +18,7 @@
             {{-- End Success Message --}}
 
             <div class="card-header">
-                <h5 class="title">Posts of {{$categoryposts[0]->category->name}}</h5>
+                <h5 class="title">Posts of {{$categoryposts[0]->category->name ?? 'Category'}}</h5>
             </div>
 
         </div>
@@ -31,11 +31,10 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <a href="#" class="btn btn-danger btn-sm" id="deleteAllSelectedRecord">{{__('Delete Select All')}}</a>
-                            <table class="table">
+                            <a href="#" id="deleteAllSelectedPost" class="btn btn-danger btn-sm text-white">Delete Select All</a>                            <table class="table">
                                 <thead class=" text-primary">
                                     <th>
-                                        <input type="checkbox" id="checkAll">
+                                        <input type="checkbox" class="selectAll" id="CheckAll">
                                     </th>
                                     <th>
                                         No
