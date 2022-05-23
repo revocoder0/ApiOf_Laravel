@@ -16,12 +16,13 @@
 
                 <div class="card-body">
                 <div class="card-title mt-3">
-                    <h3 class="font-weight-bold">{{ $post->title }}</h3>
+                    <h4 class="font-weight-bold">{{ $post->title }}</h4>
                     <p class="font-weight-bold">{{ $post->category->name }}</p>
                 </div>
                 <div class="card-img">
                     {{ $post->user->name }}
                        <p> Posted on {{Carbon\Carbon::parse($post->created_at)->format('M d, Y') }}</p>
+                       <p class="font-weight-bold">{{$post->short_description}}</p>
 
                     @if ($post->status===1)
                         <img src="{{ asset('/storage/uploads/' . $post->feature) }}" class="img-thumbnial w-100">

@@ -28,15 +28,15 @@
         </div>
       </form>
       <ul class="navbar-nav">
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link" href="#pablo">
             <i class="now-ui-icons media-2_sound-wave"></i>
             <p>
               <span class="d-lg-none d-md-block">{{ __("Stats") }}</span>
             </p>
           </a>
-        </li>
-        <li class="nav-item dropdown">
+        </li> --}}
+        {{-- <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="now-ui-icons location_world"></i>
             <p>
@@ -48,7 +48,7 @@
             <a class="dropdown-item" href="#">{{ __("Another action") }}</a>
             <a class="dropdown-item" href="#">{{ __("Something else here") }}</a>
           </div>
-        </li>
+        </li> --}}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="now-ui-icons users_single-02"></i>
